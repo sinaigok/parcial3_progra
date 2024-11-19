@@ -1,3 +1,20 @@
 <p>home works!</p>
 <h1>{{auth.islogued}}</h1>
 <app-card></app-card>
+<div *ngIf="eventos.length > 0">
+    <div *ngFor="let evento of eventos" class="card" style="width: 18rem;">
+      <img class="card-img-top" [src]="evento.imageUrl || 'default-image.jpg'" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ evento.name }}</h5>
+        <p class="card-text">{{ evento.description }}</p>
+        <p class="card-text"><strong>Fecha:</strong> {{ evento.date | date:'medium' }}</p>
+        <p class="card-text"><strong>Lugar:</strong> {{ evento.location }}</p>
+        <p class="card-text"><strong>Categoría:</strong> {{ evento.category }}</p>
+        <a href="#" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="eventos.length === 0">
+    <p>No hay eventos disponibles.</p>
+  </div>
+  
