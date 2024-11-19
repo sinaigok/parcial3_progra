@@ -1,1 +1,18 @@
 <p>carrito works!</p>
+<div class="cart-container">
+    <h2>Mi Carrito</h2>
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <h5>{{ item.name }}</h5>
+        <p>{{ item.description }}</p>
+        <p><strong>Fecha:</strong> {{ item.date | date:'medium' }}</p>
+        <p><strong>Lugar:</strong> {{ item.location }}</p>
+        <p><strong>Categoría:</strong> {{ item.category }}</p>
+      </div>
+      <button (click)="clearCart()" class="btn btn-danger">Vaciar Carrito</button>
+    </div>
+    <ng-template #emptyCart>
+      <p>No hay elementos en el carrito.</p>
+    </ng-template>
+  </div>
+  

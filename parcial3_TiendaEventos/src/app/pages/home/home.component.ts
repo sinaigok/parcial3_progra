@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { DatabaseService } from '../../services/database.service';
+import { CartService } from '../../services/cart.service'; // Asegúrate de tener un servicio de carrito
 import { CardComponent } from '../../componentes/card/card.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -17,7 +18,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    public db: DatabaseService
+    public db: DatabaseService,
+    private cartService: CartService // Inyecta el servicio del carrito
   ) {}
 
   ngOnInit() {
@@ -30,5 +32,10 @@ export class HomeComponent implements OnInit {
         console.error('Error al obtener la colección:', error);
       }
     );
+  }
+
+  addToCart(evento: any) {
+    this.cartService.addToCart(evento);
+    console.log('Evento añadido al carrito:', evento);
   }
 }
