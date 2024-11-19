@@ -1,0 +1,62 @@
+/* Contenedor del carrito */
+.cart-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-family: sans-serif;
+  }
+  
+  /* Encabezado */
+  .cart-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Elementos del carrito */
+  .cart-item {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+  }
+  
+  .cart-item h5 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .cart-item p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Botón para vaciar el carrito */
+  .btn-danger {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+  
+  /* Mensaje de carrito vacío */
+  .ng-template {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
