@@ -1,101 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { DatabaseService } from '../../services/database.service';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [
+    ReactiveFormsModule,
+  ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit {
-  title: string = "LogIn";
-  
-  users = [
-    {
-      id: "1",
-      name: "Juan Perez",
-      username: "juanp",
-      email: "juanp@example.com",
-      password: "password123"
-    },
-    {
-      id: "2",
-      name: "Maria Gomez",
-      username: "mariag",
-      email: "mariag@example.com",
-      password: "password456"
-    },
-    {
-      id: "3",
-      name: "Carlos Lopez",
-      username: "carlosl",
-      email: "carlosl@example.com",
-      password: "password789"
-    },
-    {
-      id: "4",
-      name: "Ana Martinez",
-      username: "anam",
-      email: "anam@example.com",
-      password: "password101"
-    },
-    {
-      id: "5",
-      name: "Pedro Sanchez",
-      username: "pedros",
-      email: "pedros@example.com",
-      password: "password102"
-    },
-    {
-      id: "6",
-      name: "Luisa Fernandez",
-      username: "luisaf",
-      email: "luisaf@example.com",
-      password: "password103"
-    },
-    {
-      id: "7",
-      name: "Andres Ramirez",
-      username: "andresr",
-      email: "andresr@example.com",
-      password: "password104"
-    },
-    {
-      id: "8",
-      name: "Claudia Torres",
-      username: "claudiat",
-      email: "claudiat@example.com",
-      password: "password105"
-    },
-    {
-      id: "9",
-      name: "Miguel Rodriguez",
-      username: "miguelr",
-      email: "miguelr@example.com",
-      password: "password106"
-    },
-    {
-      id: "10",
-      name: "Laura Diaz",
-      username: "laurad",
-      email: "laurad@example.com",
-      password: "password107"
-    }
-  ];
+export class LoginComponent implements OnDestroy {
 
-  constructor(public auth: AuthService, private db: DatabaseService) {
-    auth.islogued = true;
+  loginForm: FormGroup;
+  constructor(
+    public auth: AuthService,
+    private fb: FormBuilder
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['test@ucb.edu.bo', [Validators.required, Validators.email]],
+      password: ['123456', Validators.required]
+    });
+    console.log(auth.isLogued);
   }
 
-  ngOnInit(): void {
-    this.users.forEach(user => {
-      this.db.addFirestoreDocument('users', user).then(() => {
-        console.log('Usuario agregado exitosamente:', user);
-      }).catch(error => {
-        console.error('Error al agregar usuario:', error);
-      });
-    });
+  ngOnDestroy(): void {
+    console.log('destroy login')
+  }
+
+
+  onLogin() {
+    if (this.loginForm.valid) {
+      console.log('formulario valido', this.loginForm.value)
+        const { email, password } = this.loginForm.value;
+      this.auth.loginUser(email, password);
+    }
+    else {
+      console.log('formulario invalido', this.loginForm)
+      alert('revise sus datos');
+    }
   }
 }
