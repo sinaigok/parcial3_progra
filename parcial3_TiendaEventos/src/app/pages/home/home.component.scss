@@ -1,9 +1,12 @@
 /* Contenedor de las tarjetas */
+*{
+  font-family: sans-serif;
+}
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px; /* Espacio entre las tarjetas */
-  justify-content: center; /* Centra las tarjetas horizontalmente */
+  gap: 16px;
+  justify-content: center;
 }
 
 /* Estilos básicos para las tarjetas */
@@ -15,7 +18,7 @@
   margin: 16px;
   transition: transform 0.2s ease-in-out;
   font-family: sans-serif;
-  flex: 1 1 calc(33.333% - 32px); /* Tres tarjetas por fila, ajustables */
+  flex: 1 1 calc(33.333% - 32px);
   box-sizing: border-box;
 }
 
@@ -80,5 +83,18 @@
 .btn-info:hover {
   background-color: #138496;
   border-color: #117a8b;
+  
+}
 
+/* Estilos para el filtro */
+.filter-container {
+  margin: 20px;
+  text-align: center;
+}
+
+#category-select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
 }
