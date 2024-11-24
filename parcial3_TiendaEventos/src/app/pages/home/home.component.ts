@@ -4,6 +4,8 @@ import { AuthService } from '../../services/auth.service';
 import { DatabaseService } from '../../services/database.service';
 import { CartService } from '../../services/cart.service';
 import { RouterModule } from '@angular/router';
+import { Observable } from 'rxjs'; // Asegúrate de importar Observable
+import { collectionData } from '@angular/fire/firestore'; // Importa esto si no lo has hecho ya
 
 @Component({
   selector: 'app-home',
@@ -25,6 +27,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Verifica que el método fetchFirestoreCollection devuelve un Observable
     this.db.fetchFirestoreCollection('eventos').subscribe(
       (collection: any[]) => {
         this.eventos = collection ?? [];
@@ -52,7 +55,11 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart(evento: any) {
-    this.cartService.addToCart(evento);
-    console.log('Evento añadido al carrito:', evento);
+    if (this.auth.isLogued) {
+      this.cartService.addToCart(evento);
+      console.log('Evento añadido al carrito:', evento);
+    } else {
+      alert('Para poner cosas en el carrito debes iniciar sesión');
+    }
   }
 }
