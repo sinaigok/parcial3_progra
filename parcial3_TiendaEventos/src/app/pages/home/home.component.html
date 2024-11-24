@@ -4,6 +4,12 @@
     <option value="">Todas las categorías</option>
     <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
   </select>
+  
+  <!-- Filtro de lugares -->
+  <select id="location-select" (change)="filterByLocation($event)">
+    <option value="">Todos los lugares</option>
+    <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+  </select>
 </div>
 
 <!-- Lista de eventos filtrados -->

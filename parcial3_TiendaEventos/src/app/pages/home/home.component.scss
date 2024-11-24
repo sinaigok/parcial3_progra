@@ -1,7 +1,9 @@
-/* Contenedor de las tarjetas */
-*{
+/* Estilos básicos */
+* {
   font-family: sans-serif;
 }
+
+/* Contenedor de las tarjetas */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -17,7 +19,6 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin: 16px;
   transition: transform 0.2s ease-in-out;
-  font-family: sans-serif;
   flex: 1 1 calc(33.333% - 32px);
   box-sizing: border-box;
 }
@@ -70,7 +71,6 @@
 
 .btn-primary:hover {
   background-color: #0056b3;
-  border-color: #004085;
 }
 
 .btn-info {
@@ -83,7 +83,6 @@
 .btn-info:hover {
   background-color: #138496;
   border-color: #117a8b;
-  
 }
 
 /* Estilos para el filtro */
@@ -92,9 +91,10 @@
   text-align: center;
 }
 
-#category-select {
+#category-select, #location-select {
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ddd;
   font-size: 1rem;
+  margin-right: 10px; /* Añadir margen derecho para separación */
 }

@@ -4,8 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { DatabaseService } from '../../services/database.service';
 import { CartService } from '../../services/cart.service';
 import { RouterModule } from '@angular/router';
-import { Observable } from 'rxjs'; // Asegúrate de importar Observable
-import { collectionData } from '@angular/fire/firestore'; // Importa esto si no lo has hecho ya
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +18,9 @@ export class HomeComponent implements OnInit {
   eventos: any[] = [];
   filteredEventos: any[] = [];
   categories: string[] = [];
+  locations: string[] = [];
+  selectedCategory: string = '';
+  selectedLocation: string = '';
 
   constructor(
     public auth: AuthService,
@@ -27,12 +29,12 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Verifica que el método fetchFirestoreCollection devuelve un Observable
     this.db.fetchFirestoreCollection('eventos').subscribe(
       (collection: any[]) => {
         this.eventos = collection ?? [];
         this.filteredEventos = collection ?? [];
         this.extractCategories();
+        this.extractLocations();
         console.log(collection); // Imprime la colección obtenida
       },
       (error) => {
@@ -45,13 +47,24 @@ export class HomeComponent implements OnInit {
     this.categories = Array.from(new Set(this.eventos.map(evento => evento?.category)));
   }
 
+  extractLocations() {
+    this.locations = Array.from(new Set(this.eventos.map(evento => evento?.location)));
+  }
+
   filterByCategory(event: Event) {
-    const category = (event.target as HTMLSelectElement).value;
-    if (category === "") {
-      this.filteredEventos = this.eventos;
-    } else {
-      this.filteredEventos = this.eventos.filter(evento => evento?.category === category);
-    }
+    this.selectedCategory = (event.target as HTMLSelectElement).value;
+    this.applyFilters();
+  }
+
+  filterByLocation(event: Event) {
+    this.selectedLocation = (event.target as HTMLSelectElement).value;
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    this.filteredEventos = this.eventos
+      .filter(evento => this.selectedCategory === '' || evento.category === this.selectedCategory)
+      .filter(evento => this.selectedLocation === '' || evento.location === this.selectedLocation);
   }
 
   addToCart(evento: any) {
