@@ -1,0 +1,13 @@
+<div class="recomendaciones-container">
+    <h3>Recomendaciones</h3>
+    <div class="recomendaciones-cards">
+      <div *ngFor="let event of recommendedEvents" class="recomendaciones-card">
+        <h4>{{ event.name }}</h4>
+        <p>{{ event.category }}</p>
+        <p *ngIf="event.artist">Artista: {{ event.artist }}</p>
+        <p *ngIf="event.team">Equipo: {{ event.team }}</p>
+        <button [routerLink]="['/evento', event.id!]" class="btn-ver-mas">Ver más</button>
+      </div>
+    </div>
+  </div>
+  

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Auth } from '@angular/fire/auth';
 import { sendPasswordResetEmail } from '@angular/fire/auth';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router'; // Importa el Router
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class ForgotPasswordComponent implements OnInit {
   forgotPasswordForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: Auth) {
+  constructor(private fb: FormBuilder, private auth: Auth, private router: Router) { // Inyecta el Router
     this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
     });
@@ -27,6 +28,7 @@ export class ForgotPasswordComponent implements OnInit {
     sendPasswordResetEmail(this.auth, email)
       .then(() => {
         alert('Correo de recuperación enviado. Revisa tu bandeja de entrada.');
+        this.router.navigateByUrl('/login'); // Redirigir al login
       })
       .catch((error) => {
         console.error('Error al enviar el correo de recuperación:', error);

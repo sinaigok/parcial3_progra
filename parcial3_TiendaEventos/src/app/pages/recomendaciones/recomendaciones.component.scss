@@ -1,0 +1,58 @@
+*{
+    font-family: sans-serif;
+}
+.recomendaciones-container {
+    margin-top: 20px;
+  }
+  
+  .recomendaciones-cards {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    justify-content: center;
+  }
+  
+  .recomendaciones-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    text-align: center;
+    width: 200px; /* Fijar el ancho de la tarjeta */
+    box-sizing: border-box; /* Asegurar que el relleno esté incluido en el ancho */
+  }
+  
+  .recomendaciones-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .recomendaciones-card h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .recomendaciones-card p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .btn-ver-mas {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+  }
+  
+  .btn-ver-mas:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  

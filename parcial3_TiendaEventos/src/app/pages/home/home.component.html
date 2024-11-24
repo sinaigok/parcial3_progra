@@ -23,10 +23,10 @@
       <p class="card-text"><strong>Lugar:</strong> {{ evento.location }}</p>
       <p class="card-text"><strong>Categoría:</strong> {{ evento.category }}</p>
       <button [routerLink]="['/evento', evento.id!]" class="btn btn-info">Ver más</button>
-      <button (click)="addToCart(evento)" class="btn btn-primary">Añadir al Carrito</button>
     </div>
   </div>
 </div>
 <div *ngIf="filteredEventos.length === 0">
   <p>No hay eventos disponibles.</p>
 </div>
+

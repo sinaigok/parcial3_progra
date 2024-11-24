@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { DatabaseService } from '../../services/database.service';
-import { CartService } from '../../services/cart.service';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -21,11 +20,11 @@ export class HomeComponent implements OnInit {
   locations: string[] = [];
   selectedCategory: string = '';
   selectedLocation: string = '';
+  selectedDate: string = '';
 
   constructor(
     public auth: AuthService,
-    public db: DatabaseService,
-    private cartService: CartService
+    public db: DatabaseService
   ) {}
 
   ngOnInit() {
@@ -61,18 +60,15 @@ export class HomeComponent implements OnInit {
     this.applyFilters();
   }
 
+  filterByDate(event: Event) {
+    this.selectedDate = (event.target as HTMLInputElement).value;
+    this.applyFilters();
+  }
+
   applyFilters() {
     this.filteredEventos = this.eventos
       .filter(evento => this.selectedCategory === '' || evento.category === this.selectedCategory)
-      .filter(evento => this.selectedLocation === '' || evento.location === this.selectedLocation);
-  }
-
-  addToCart(evento: any) {
-    if (this.auth.isLogued) {
-      this.cartService.addToCart(evento);
-      console.log('Evento añadido al carrito:', evento);
-    } else {
-      alert('Para poner cosas en el carrito debes iniciar sesión');
-    }
+      .filter(evento => this.selectedLocation === '' || evento.location === this.selectedLocation)
+      .filter(evento => this.selectedDate === '' || new Date(evento.date).toDateString() === new Date(this.selectedDate).toDateString());
   }
 }

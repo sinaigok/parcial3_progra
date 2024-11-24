@@ -1,11 +1,19 @@
-<div *ngIf="evento" class="event-detail-container">
+<div class="evento-container" *ngIf="evento">
+  <div class="evento-detalle">
     <h1>{{ evento.name }}</h1>
+    <img [src]="evento.imageUrl" alt="{{ evento.name }}">
+    <p>{{ evento.description }}</p>
     <p><strong>Fecha:</strong> {{ evento.date | date:'medium' }}</p>
-    <p><strong>Artistas:</strong> {{ evento.artists.join(', ') }}</p>
-    <p><strong>Entradas Disponibles:</strong> {{ evento.ticketsAvailable }}</p>
-    <p><strong>Total de Entradas:</strong> {{ evento.totalTickets }}</p>
     <p><strong>Lugar:</strong> {{ evento.location }}</p>
-    <p><strong>Categoría:</strong> {{ evento.category }}</p>
-    <p><strong>Género Musical:</strong> {{ evento.musicGenre }}</p>
+    <button 
+      [ngClass]="{'btn-added': evento.addedToCart, 'btn-add-cart': !evento.addedToCart}"
+      (click)="addToCart(evento)" 
+      [disabled]="evento.addedToCart">
+      {{ evento.addedToCart ? 'Añadido' : 'Añadir al carrito' }}
+    </button>
   </div>
-  
+  <app-recomendaciones [category]="evento.category"></app-recomendaciones>
+</div>
+<div *ngIf="!evento">
+  <p>Cargando detalles del evento...</p>
+</div>
