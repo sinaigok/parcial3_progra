@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, reauthenticateWithCredential, EmailAuthProvider, updatePassword, updateEmail, signOut, sendPasswordResetEmail } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, reauthenticateWithCredential, EmailAuthProvider, updatePassword, updateEmail, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { Firestore, doc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { DatabaseService } from './database.service';
@@ -67,6 +67,21 @@ export class AuthService {
       this.router.navigateByUrl('/profile'); // Redirige al perfil del usuario
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
+    }
+  }
+
+  async loginWithGoogle() {
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(this.auth, provider);
+      localStorage.setItem('user', JSON.stringify(userCredential.user)); // Guarda el usuario en el localStorage
+      this.isLogued = true; // Marca al usuario como logueado
+      localStorage.setItem('isLogued', 'true'); // Guarda el estado de autenticación en el localStorage
+      console.log('Usuario autenticado con Google:', userCredential.user);
+      this.getProfile(userCredential.user.uid); // Obtiene el perfil del usuario
+      this.router.navigateByUrl('/profile'); // Redirige al perfil del usuario
+    } catch (error) {
+      console.error('Error al iniciar sesión con Google:', error);
     }
   }
 

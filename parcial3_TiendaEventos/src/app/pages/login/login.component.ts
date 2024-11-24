@@ -1,6 +1,5 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { DatabaseService } from '../../services/database.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -9,10 +8,10 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    ReactiveFormsModule, RouterModule
+    RouterModule
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss'] // Corrección del nombre del atributo
 })
 export class LoginComponent implements OnDestroy {
 
@@ -29,19 +28,28 @@ export class LoginComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('destroy login')
+    console.log('destroy login');
   }
-
 
   onLogin() {
     if (this.loginForm.valid) {
-      console.log('formulario valido', this.loginForm.value)
-        const { email, password } = this.loginForm.value;
+      console.log('formulario valido', this.loginForm.value);
+      const { email, password } = this.loginForm.value;
       this.auth.loginUser(email, password);
-    }
-    else {
-      console.log('formulario invalido', this.loginForm)
+    } else {
+      console.log('formulario invalido', this.loginForm);
       alert('revise sus datos');
     }
+  }
+
+  onLoginWithGoogle() {
+    this.auth.loginWithGoogle()
+      .then(() => {
+        console.log('Inicio de sesión con Google exitoso');
+      })
+      .catch(error => {
+        console.error('Error al iniciar sesión con Google', error);
+        alert('Hubo un error al iniciar sesión con Google. Por favor, inténtalo de nuevo.');
+      });
   }
 }

@@ -1,17 +1,16 @@
 <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
   <div>
-    <label for="">Email</label>
-    <input formControlName="email" type="text">
+    <label for="email">Email</label>
+    <input formControlName="email" type="text" id="email">
   </div>
   <div>
-    <label for="">Password</label>
-    <input formControlName="password" type="text">
+    <label for="password">Password</label>
+    <input formControlName="password" type="password" id="password">
   </div>
-  <button type="submit">
-    Iniciar sesión
-  </button>
+  <button type="submit">Iniciar sesión</button>
+  <button type="button" (click)="onLoginWithGoogle()">Iniciar sesión con Google</button>
   <div>
     <span>¿No tienes cuenta? <a [routerLink]="['/register']">Regístrate</a></span>
-    <div> <a [routerLink]="['/forgot']">¿Olvidaste tu contraseña?</a> </div>
+    <div><a [routerLink]="['/forgot']">¿Olvidaste tu contraseña?</a></div>
   </div>
 </form>
