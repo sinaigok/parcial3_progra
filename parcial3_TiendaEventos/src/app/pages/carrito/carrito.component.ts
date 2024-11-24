@@ -10,16 +10,18 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./carrito.component.scss']
 })
 export class CarritoComponent implements OnInit {
-  cartItems: any[] = [];  // Asegúrate de definir esta propiedad
+  cartItems: any[] = [];
 
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    this.cartItems = this.cartService.getCartItems();  // Inicializa la propiedad cartItems
+    this.cartItems = this.cartService.getCartItems();
+    console.log('Elementos del carrito al inicializar:', this.cartItems); // Log para verificar
   }
 
   clearCart() {
     this.cartService.clearCart();
     this.cartItems = [];
+    console.log('Carrito vaciado'); // Log para verificar
   }
 }
