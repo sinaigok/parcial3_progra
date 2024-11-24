@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, reauthenticateWithCredential, EmailAuthProvider, updatePassword, updateEmail, signOut } from '@angular/fire/auth'; // Añade `updateEmail` y `signOut`
-import { Firestore, doc, setDoc, updateDoc } from '@angular/fire/firestore'; // Añade `updateDoc` para actualizar documentos
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, reauthenticateWithCredential, EmailAuthProvider, updatePassword, updateEmail, signOut } from '@angular/fire/auth';
+import { Firestore, doc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { DatabaseService } from './database.service';
 
@@ -9,8 +9,8 @@ import { DatabaseService } from './database.service';
 })
 export class AuthService {
 
-  isLogued = false; // Variable para verificar si el usuario está logueado
-  profile: any; // Variable para almacenar el perfil del usuario
+  isLogued = false;
+  profile: any;
 
   constructor(
     private auth: Auth,
@@ -18,19 +18,18 @@ export class AuthService {
     public db: DatabaseService,
     public router: Router
   ) {
-    this.verifyIsLogued(); // Verifica si el usuario está logueado al iniciar
+    this.verifyIsLogued();
     let storedProfile: any = localStorage.getItem('profile');
     if (storedProfile) {
-      this.profile = JSON.parse(storedProfile); // Si existe, parsea el perfil y lo guarda en `profile`
+      this.profile = JSON.parse(storedProfile);
     }
     let storedUser: any = localStorage.getItem('user');
     if (storedUser) {
-      let user = JSON.parse(storedUser); // Si existe, parsea el usuario y obtiene su perfil
+      let user = JSON.parse(storedUser);
       this.getProfile(user?.uid);
     }
   }
 
-  // Registro de usuario y almacenamiento en Firestore
   async registerUser(email: string, password: string, additionalData: { name: string; phone: string; username: string }) {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
@@ -45,7 +44,6 @@ export class AuthService {
     }
   }
 
-  // Login de usuario y actualización del estado de autenticación
   async loginUser(email: string, password: string) {
     try {
       const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
@@ -60,12 +58,12 @@ export class AuthService {
     }
   }
 
-  // Logout de usuario y actualización del estado de autenticación
   async logoutUser() {
     try {
       await signOut(this.auth);
       this.isLogued = false; // Marca al usuario como no logueado
       localStorage.removeItem('user'); // Remueve el usuario del localStorage
+      localStorage.removeItem('profile'); // Remueve el perfil del localStorage
       localStorage.setItem('isLogued', 'false'); // Actualiza el estado de autenticación en el localStorage
       this.router.navigateByUrl('/login'); // Redirige al login
     } catch (error) {
@@ -73,14 +71,12 @@ export class AuthService {
     }
   }
 
-  // Verifica el estado de autenticación
   verifyIsLogued() {
     const isLogued = localStorage.getItem('isLogued') === 'true'; // Verifica el estado de autenticación en el localStorage
     this.isLogued = isLogued; // Actualiza la variable `isLogued`
     return isLogued;
   }
 
-  // Obtiene el perfil del usuario desde Firestore
   getProfile(uid: any) {
     this.db.getDocumentById('users', uid)
       .subscribe(
@@ -92,7 +88,6 @@ export class AuthService {
         (error: any) => { console.log(error); });
   }
 
-  // Verificación de la contraseña actual del usuario
   async verifyPassword(password: string): Promise<boolean> {
     const user = this.auth.currentUser;
     if (user) {
@@ -108,7 +103,6 @@ export class AuthService {
     return false;
   }
 
-  // Actualización de la contraseña del usuario
   async updateUserPassword(newPassword: string): Promise<void> {
     const user = this.auth.currentUser;
     if (user) {
@@ -120,7 +114,6 @@ export class AuthService {
     }
   }
 
-  // Actualización del perfil del usuario
   async updateUserProfile(updateData: any): Promise<void> {
     const user = this.auth.currentUser;
     if (user) {
