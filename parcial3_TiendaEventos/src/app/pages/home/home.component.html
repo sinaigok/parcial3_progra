@@ -1,17 +1,17 @@
 <div *ngIf="eventos.length > 0" class="cards-container">
-    <div *ngFor="let evento of eventos" class="card">
-      <img class="card-img-top" [src]="evento.imageUrl || 'default-image.jpg'" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{ evento.name }}</h5>
-        <p class="card-text">{{ evento.description }}</p>
-        <p class="card-text"><strong>Fecha:</strong> {{ evento.date | date:'medium' }}</p>
-        <p class="card-text"><strong>Lugar:</strong> {{ evento.location }}</p>
-        <p class="card-text"><strong>Categoría:</strong> {{ evento.category }}</p>
-        <button (click)="addToCart(evento)" class="btn btn-primary">Añadir al Carrito</button>
-      </div>
+  <div *ngFor="let evento of eventos" class="card">
+    <img class="card-img-top" [src]="evento.imageUrl || 'default-image.jpg'" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ evento.name }}</h5>
+      <p class="card-text">{{ evento.description }}</p>
+      <p class="card-text"><strong>Fecha:</strong> {{ evento.date | date:'medium' }}</p>
+      <p class="card-text"><strong>Lugar:</strong> {{ evento.location }}</p>
+      <p class="card-text"><strong>Categoría:</strong> {{ evento.category }}</p>
+      <button [routerLink]="['/evento', evento.id]" class="btn btn-info">Ver más</button>
+      <button (click)="addToCart(evento)" class="btn btn-primary">Añadir al Carrito</button>
     </div>
   </div>
-  <div *ngIf="eventos.length === 0">
-    <p>No hay eventos disponibles.</p>
-  </div>
-  
+</div>
+<div *ngIf="eventos.length === 0">
+  <p>No hay eventos disponibles.</p>
+</div>

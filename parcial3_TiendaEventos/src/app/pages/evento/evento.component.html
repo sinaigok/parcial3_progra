@@ -1,1 +1,11 @@
-<p>evento works!</p>
+<div *ngIf="evento" class="event-detail-container">
+    <h1>{{ evento.name }}</h1>
+    <p><strong>Fecha:</strong> {{ evento.date | date:'medium' }}</p>
+    <p><strong>Artistas:</strong> {{ evento.artists.join(', ') }}</p>
+    <p><strong>Entradas Disponibles:</strong> {{ evento.ticketsAvailable }}</p>
+    <p><strong>Total de Entradas:</strong> {{ evento.totalTickets }}</p>
+    <p><strong>Lugar:</strong> {{ evento.location }}</p>
+    <p><strong>Categoría:</strong> {{ evento.category }}</p>
+    <p><strong>Género Musical:</strong> {{ evento.musicGenre }}</p>
+  </div>
+  

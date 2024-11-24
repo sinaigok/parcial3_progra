@@ -4,11 +4,12 @@ import { AuthService } from '../../services/auth.service';
 import { DatabaseService } from '../../services/database.service';
 import { CartService } from '../../services/cart.service'; // Asegúrate de tener un servicio de carrito
 import { CardComponent } from '../../componentes/card/card.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule], // Asegúrate de incluir RouterModule aquí
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
