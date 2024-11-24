@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, reauthenticateWithCredential, EmailAuthProvider, updatePassword, updateEmail, signOut } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, reauthenticateWithCredential, EmailAuthProvider, updatePassword, updateEmail, signOut, sendPasswordResetEmail } from '@angular/fire/auth';
 import { Firestore, doc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { DatabaseService } from './database.service';
@@ -19,14 +19,26 @@ export class AuthService {
     public router: Router
   ) {
     this.verifyIsLogued();
-    let storedProfile: any = localStorage.getItem('profile');
-    if (storedProfile) {
-      this.profile = JSON.parse(storedProfile);
+
+    // Verifica si `profile` está definido antes de parsear
+    const storedProfile = localStorage.getItem('profile');
+    if (storedProfile && storedProfile !== 'undefined') {
+      try {
+        this.profile = JSON.parse(storedProfile);
+      } catch (error) {
+        console.error('Error parsing storedProfile JSON:', error);
+      }
     }
-    let storedUser: any = localStorage.getItem('user');
-    if (storedUser) {
-      let user = JSON.parse(storedUser);
-      this.getProfile(user?.uid);
+
+    // Verifica si `user` está definido antes de parsear
+    const storedUser = localStorage.getItem('user');
+    if (storedUser && storedUser !== 'undefined') {
+      try {
+        const user = JSON.parse(storedUser);
+        this.getProfile(user?.uid);
+      } catch (error) {
+        console.error('Error parsing storedUser JSON:', error);
+      }
     }
   }
 
@@ -131,6 +143,17 @@ export class AuthService {
         console.error('Error al actualizar el perfil', error);
         throw error; // Manejamos el error aquí para que se capture en el componente
       }
+    }
+  }
+
+  // Método para enviar el correo de recuperación de contraseña
+  async sendPasswordReset(email: string): Promise<void> {
+    try {
+      await sendPasswordResetEmail(this.auth, email);
+      console.log('Correo de recuperación enviado.');
+    } catch (error) {
+      console.error('Error al enviar el correo de recuperación:', error);
+      throw error; // Lanza el error para manejarlo en el componente
     }
   }
 }
