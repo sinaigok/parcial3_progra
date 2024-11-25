@@ -1,16 +1,25 @@
-<!-- Filtro de categorías -->
-<div class="filter-container">
-  <select id="category-select" (change)="filterByCategory($event)">
-    <option value="">Todas las categorías</option>
-    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-  </select>
-  
-  <!-- Filtro de lugares -->
-  <select id="location-select" (change)="filterByLocation($event)">
-    <option value="">Todos los lugares</option>
-    <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
-  </select>
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeSidebar()">&times;</a>
+  <h2>Filtrar</h2>
+  <div class="filter-container">
+    <h3>Categorías</h3>
+    <select id="category-select" (change)="filterByCategory($event)">
+      <option value="">Todas las categorías</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+  <div class="filter-container">
+    <h3>Ubicación</h3>
+    <select id="location-select" (change)="filterByLocation($event)">
+      <option value="">Todos los lugares</option>
+      <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+    </select>
+  </div>
 </div>
+
+<!-- Botón para abrir el sidebar -->
+<button id="openSidebar" class="btn btn-primary" (click)="openSidebar()">Filtrar</button>
 
 <!-- Lista de eventos filtrados -->
 <div *ngIf="filteredEventos.length > 0" class="cards-container">
@@ -29,4 +38,3 @@
 <div *ngIf="filteredEventos.length === 0">
   <p>No hay eventos disponibles.</p>
 </div>
-
