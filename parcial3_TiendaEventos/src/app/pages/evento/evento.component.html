@@ -5,10 +5,25 @@
     <p>{{ evento.description }}</p>
     <p><strong>Fecha:</strong> {{ evento.date | date:'medium' }}</p>
     <p><strong>Lugar:</strong> {{ evento.location }}</p>
+    <p><strong>Precio:</strong> {{ evento.price }} Bs</p>
+    <p><strong>Entradas Disponibles:</strong> {{ evento.ticketsAvailable - cantidadEntradas }}</p>
+    
+    <!-- Nuevo campo para la cantidad de entradas -->
+    <div>
+      <label for="cantidad">Cantidad de Entradas:</label>
+      <input 
+        type="number" 
+        id="cantidad" 
+        [(ngModel)]="cantidadEntradas" 
+        (input)="actualizarBoton()"
+        min="0"
+      >
+    </div>
+    
     <button 
       [ngClass]="{'btn-added': evento.addedToCart, 'btn-add-cart': !evento.addedToCart}"
       (click)="addToCart(evento)" 
-      [disabled]="evento.addedToCart">
+      [disabled]="!botonActivo || evento.addedToCart">
       {{ evento.addedToCart ? 'Añadido' : 'Añadir al carrito' }}
     </button>
   </div>

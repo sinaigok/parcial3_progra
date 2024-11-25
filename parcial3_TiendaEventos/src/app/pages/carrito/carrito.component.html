@@ -10,11 +10,15 @@
     <h2>Mi Carrito</h2>
     <div *ngIf="cartItems.length > 0; else emptyCart">
       <div *ngFor="let item of cartItems" class="cart-item">
-        <h5>{{ item.name }}</h5>
-        <p>{{ item.description }}</p>
-        <p><strong>Fecha:</strong> {{ item.date | date:'medium' }}</p>
-        <p><strong>Lugar:</strong> {{ item.location }}</p>
-        <p><strong>Categoría:</strong> {{ item.category }}</p>
+        <div class="cart-item-header">
+          <h5>{{ item.nombre }}</h5>
+          <button (click)="removeItem(item.eventoId)" class="btn-remove">✖</button>
+        </div>
+        <p><strong>Cantidad de entradas:</strong> {{ item.cantidadEntradas }}</p>
+        <p class="precio"><strong>Precio Total:</strong> {{ item.precioTotal }} Bs</p>
+      </div>
+      <div class="total-carrito">
+        <p><strong>Total del Carrito:</strong> {{ totalCarrito }} Bs</p>
       </div>
       <button (click)="clearCart()" class="btn btn-danger">Vaciar Carrito</button>
     </div>

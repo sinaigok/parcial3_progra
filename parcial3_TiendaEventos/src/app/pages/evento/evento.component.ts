@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // Importar FormsModule
 import { DatabaseService } from '../../services/database.service';
 import { RouterModule } from '@angular/router';
 import { RecomendacionesComponent } from '../recomendaciones/recomendaciones.component';
@@ -10,13 +11,15 @@ import { AuthService } from '../../services/auth.service'; // Importar AuthServi
 @Component({
   selector: 'app-evento',
   standalone: true,
-  imports: [CommonModule, RouterModule, RecomendacionesComponent],
+  imports: [CommonModule, FormsModule, RouterModule, RecomendacionesComponent], // Incluir FormsModule
   templateUrl: './evento.component.html',
   styleUrls: ['./evento.component.scss']
 })
 export class EventoComponent implements OnInit {
   eventId: string | null = null;
   evento: any;
+  cantidadEntradas: number = 0; // Iniciar en 0
+  botonActivo: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,12 +46,32 @@ export class EventoComponent implements OnInit {
     );
   }
 
+  actualizarBoton() {
+    this.cantidadEntradas = Math.max(0, this.cantidadEntradas); // Asegurarse de que no sea negativo
+    this.botonActivo = this.cantidadEntradas > 0 && this.cantidadEntradas <= this.evento.ticketsAvailable;
+  }
+
   addToCart(evento: any) {
-    if (this.auth.isLogued) {
+    if (this.auth.isLogued && this.botonActivo) {
+      evento.addedToCart = true;
+      evento.ticketsAvailable -= this.cantidadEntradas;
+      
+      // Guardar en local storage
+      const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+      const itemCarrito = {
+        eventoId: evento.id,
+        nombre: evento.name,
+        cantidadEntradas: this.cantidadEntradas,
+        precioTotal: this.cantidadEntradas * evento.price
+      };
+      carrito.push(itemCarrito);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      
+      // Imprimir en la consola
+      console.log(`Evento: ${evento.name}, Cantidad de entradas: ${this.cantidadEntradas}, Precio Total: ${itemCarrito.precioTotal} Bs`);
+      
       this.cartService.addToCart(evento);
-      this.evento.addedToCart = true;
-      console.log('Evento añadido al carrito:', evento);
-    } else {
+    } else if (!this.auth.isLogued) {
       alert('Para poner cosas en el carrito debes iniciar sesión');
     }
   }
