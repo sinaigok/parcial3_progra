@@ -1,7 +1,8 @@
 /* Estilos generales */
-*{
-font-family: sans-serif;
+* {
+  font-family: sans-serif;
 }
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
@@ -12,7 +13,8 @@ body {
   height: 100vh;
 }
 
-form {
+/* Contenedor del formulario */
+.form-container {
   background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -20,9 +22,13 @@ form {
   padding: 24px;
   width: 300px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-form div {
+.form-container div {
   margin-bottom: 16px;
 }
 

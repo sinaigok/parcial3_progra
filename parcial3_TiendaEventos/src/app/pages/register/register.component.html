@@ -1,33 +1,39 @@
-<div class="container-fluid">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+</head>
+<body>
+  <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <!--
-        JS: onsubmit="()"
-        (ngSubmit)="onLogin()"
-        -->
+
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
           <div class="form-control-group">
-            <label for="">Nombre</label>
-            <input formControlName="name" class="form-control" type="text">
+            <label for="name">Nombre</label>
+            <input formControlName="name" class="form-control" type="text" id="name">
           </div>
           <div class="form-control-group">
-            <label for="">Teléfono</label>
-            <input formControlName="phone" class="form-control" type="text">
+            <label for="phone">Teléfono</label>
+            <input formControlName="phone" class="form-control" type="text" id="phone">
           </div>
           <div class="form-control-group">
-            <label for="">Email</label>
-            <input formControlName="email" class="form-control" type="text">
+            <label for="email">Email</label>
+            <input formControlName="email" class="form-control" type="text" id="email">
           </div>
           <div class="form-control-group">
-            <label for="">Password</label>
-            <input formControlName="password" class="form-control" type="text">
+            <label for="password">Password</label>
+            <input formControlName="password" class="form-control" type="password" id="password">
           </div>
           <button type="submit" class="btn btn-primary">
             Iniciar sesión
           </button>
-  
+
         </form>
       </div>
     </div>
   </div>
-  
+</body>
+</html>

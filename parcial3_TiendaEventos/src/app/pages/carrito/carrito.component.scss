@@ -1,4 +1,11 @@
 /* Contenedor del carrito */
+html, body { 
+  min-height: 100vh; /* Ocupa toda la altura del viewport */ 
+  margin: 0; 
+  justify-content: center; 
+  align-items: center; 
+  background-color: #f8f9fa; }
+
 .cart-container {
     max-width: 800px;
     margin: 0 auto;

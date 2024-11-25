@@ -1,4 +1,12 @@
-<div class="cart-container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Carrito</title>
+</head>
+<body>
+  <div class="cart-container">
     <h2>Mi Carrito</h2>
     <div *ngIf="cartItems.length > 0; else emptyCart">
       <div *ngFor="let item of cartItems" class="cart-item">
@@ -14,4 +22,5 @@
       <p>No hay elementos en el carrito.</p>
     </ng-template>
   </div>
-  
+</body>
+</html>

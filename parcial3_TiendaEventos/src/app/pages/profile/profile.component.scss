@@ -1,6 +1,13 @@
 *{
     font-family: sans-serif;
 }
+html, body {
+  height: 100vh; /* Ocupa toda la altura del viewport */
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+}
 .profile-container {
     max-width: 800px;
     margin: 0 auto;
@@ -44,13 +51,13 @@
   }
   
   .btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
+    background-color: #007bff;
+    border-color: #007bff;
     color: #fff;
   }
   
   .btn-secondary:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
+    background-color: #007bff;
+    border-color: #007bff;
   }
   

@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FooterComponent } from './pages/footer/footer.component'; // Importar FooterComponent
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink],
+  imports: [CommonModule, RouterModule, FooterComponent], // Añadir FooterComponent a los imports
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'parcial3_TiendaEventos';
+  title = 'Parcial3TiendaEventos';
 }
