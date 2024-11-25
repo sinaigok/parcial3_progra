@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Obtener y mostrar eventos de Firestore
     this.db.fetchFirestoreCollection('eventos').subscribe(
       (collection: any[]) => {
         this.eventos = collection ?? [];
@@ -40,6 +41,8 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  
 
   extractCategories() {
     this.categories = Array.from(new Set(this.eventos.map(evento => evento?.category)));
@@ -76,7 +79,7 @@ export class HomeComponent implements OnInit {
   }
 
   openSidebar() {
-    document.getElementById('sidebar')!.style.width = '330px'; // Ajustar el ancho a 300px
+    document.getElementById('sidebar')!.style.width = '330px'; // Ajustar el ancho a 330px
   }
 
   closeSidebar() {

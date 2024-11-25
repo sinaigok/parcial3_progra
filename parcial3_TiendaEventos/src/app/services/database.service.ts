@@ -48,4 +48,10 @@ export class DatabaseService {
     const docRef = doc(this.firestore, `${collectionName}/${uuid}`);
     return deleteDoc(docRef);  // Elimina el documento con el UUID proporcionado
   }
+
+  async addEvents(events: any[]): Promise<void> { 
+    const eventsCollection = collection(this.firestore, 'eventos'); 
+    for (const event of events) { await addDoc(eventsCollection, event); 
+    } 
+  }
 }
