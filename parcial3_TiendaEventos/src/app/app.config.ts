@@ -8,7 +8,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 ///////// importar httopclient module de forma global
 import { HttpClientModule } from '@angular/common/http';
-import { NgModel, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 ///// para login y registro ////
 import { Auth } from '@angular/fire/auth';
@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
 export const appConfig: ApplicationConfig = {
   providers: [
 
-    importProvidersFrom(HttpClientModule, ReactiveFormsModule, AngularFireAuthModule,
+    importProvidersFrom(HttpClientModule, FormsModule, ReactiveFormsModule, AngularFireAuthModule,
       CommonModule),
     provideFirebaseApp(() => initializeApp({
       apiKey: "AIzaSyAh92vXtrfUKAVGtcjPnFR-xOlTd8MHtsI",

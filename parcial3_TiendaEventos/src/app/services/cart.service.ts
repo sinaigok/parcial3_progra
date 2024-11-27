@@ -14,14 +14,21 @@ export class CartService {
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
       this.cart = JSON.parse(storedCart);
-      console.log('Carrito cargado desde localStorage:', this.cart); // Log para verificar
+      console.log('Carrito cargado desde localStorage:', this.cart); 
     }
   }
 
   addToCart(evento: any) {
-    this.cart.push(evento);
+    const item = {
+      eventoId: evento.id,
+      nombre: evento.name,
+      cantidadEntradas: evento.cantidadEntradas,
+      precio: evento.price,  // Asegúrate de que este valor esté correctamente definido
+      precioTotal: evento.cantidadEntradas * evento.price
+    };
+    this.cart.push(item);
     localStorage.setItem('cart', JSON.stringify(this.cart));
-    console.log('Carrito actualizado:', this.cart); // Log para verificar
+    console.log('Carrito actualizado:', this.cart);
   }
 
   getCartItems() {
@@ -30,7 +37,7 @@ export class CartService {
 
   clearCart() {
     this.cart = [];
-    localStorage.setItem('cart', JSON.stringify(this.cart)); // Asegurarse de actualizar localStorage
-    console.log('Carrito vacío:', this.cart); // Log para verificar
+    localStorage.setItem('cart', JSON.stringify(this.cart)); 
+    console.log('Carrito vacío:', this.cart); 
   }
 }

@@ -1,0 +1,10 @@
+<div>
+    <h2>Confirmación de Compra</h2>
+    <div *ngFor="let item of cartItems">
+      <p>{{ item.nombre }} - {{ item.precioTotal }} Bs</p>
+      <p>Cantidad: {{ item.cantidadEntradas }}</p>
+    </div>
+    <p>Total: {{ totalCarrito }} Bs</p>
+    <button (click)="confirmarCompra()">Confirmar Compra</button>
+  </div>
+  

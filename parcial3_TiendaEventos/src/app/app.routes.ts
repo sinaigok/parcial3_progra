@@ -8,6 +8,7 @@ import { EditProfileComponent } from './pages/profile/edit-profile/edit-profile.
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { EventoComponent } from './pages/evento/evento.component';
 import { RecomendacionesComponent } from './pages/recomendaciones/recomendaciones.component';
+import { ConfirmacionCompraComponent } from './pages/confirmacioncompra/confirmacioncompra.component';
 
 export const routes: Routes = [
   { path: "inicio", component: HomeComponent },
@@ -16,7 +17,8 @@ export const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "carrito", component: CarritoComponent },
   { path: "edit", component: EditProfileComponent },
-  { path: "forgot", component:ForgotPasswordComponent},
+  { path: "forgot", component: ForgotPasswordComponent },
   { path: 'evento/:id', component: EventoComponent },
-  {path: "reco", component: RecomendacionesComponent}
+  { path: "reco", component: RecomendacionesComponent },
+  { path: 'checkout', component: ConfirmacionCompraComponent }
 ];

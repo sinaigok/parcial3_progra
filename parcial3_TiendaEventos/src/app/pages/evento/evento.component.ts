@@ -55,19 +55,23 @@ export class EventoComponent implements OnInit {
     if (this.auth.isLogued && this.botonActivo) {
       evento.addedToCart = true;
       evento.ticketsAvailable -= this.cantidadEntradas;
-      
-      // Guardar en local storage
+  
       const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
       const itemCarrito = {
         eventoId: evento.id,
         nombre: evento.name,
         cantidadEntradas: this.cantidadEntradas,
+        precio: evento.price,  // Asegúrate de que este valor está correctamente definido y tomado del campo `price`
         precioTotal: this.cantidadEntradas * evento.price
       };
+  
+      if (isNaN(itemCarrito.precio)) {
+        console.error(`Precio inválido para ${itemCarrito.nombre}`);
+      }
+  
       carrito.push(itemCarrito);
       localStorage.setItem('carrito', JSON.stringify(carrito));
       
-      // Imprimir en la consola
       console.log(`Evento: ${evento.name}, Cantidad de entradas: ${this.cantidadEntradas}, Precio Total: ${itemCarrito.precioTotal} Bs`);
       
       this.cartService.addToCart(evento);
@@ -75,4 +79,5 @@ export class EventoComponent implements OnInit {
       alert('Para poner cosas en el carrito debes iniciar sesión');
     }
   }
+  
 }
