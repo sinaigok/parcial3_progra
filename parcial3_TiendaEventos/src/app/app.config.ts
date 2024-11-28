@@ -16,6 +16,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { CommonModule } from '@angular/common';
 
+import { CartService } from './services/cart.service';
+
 export const appConfig: ApplicationConfig = {
   providers: [
 
@@ -34,5 +36,7 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes)]
+    provideRouter(routes),
+    CartService
+  ]
 };
