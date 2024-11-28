@@ -1,22 +1,10 @@
-<main class="confirmacion-compra">
-  <h1>Confirmación de Compra</h1>
-
-  <div *ngIf="cartItems.length > 0; else emptyCart">
-    <div *ngFor="let item of cartItems" class="cart-item">
-      <h2>{{ item.nombre }}</h2>
-      <p>Fecha: {{ item.fecha }}</p>
-      <p>Lugar: {{ item.lugar }}</p>
-      <p>Categoría: {{ item.categoria }}</p>
+<div>
+    <h2>Confirmación de Compra</h2>
+    <div *ngFor="let item of cartItems">
+      <p>{{ item.nombre }} - {{ item.precioTotal }} Bs</p>
       <p>Cantidad: {{ item.cantidadEntradas }}</p>
-      <p>Precio unitario: {{ item.precio }} Bs</p>
-      <p>Precio total: {{ item.precioTotal }} Bs</p>
     </div>
-
-    <h3>Total a pagar: {{ totalCarrito }} Bs</h3>
+    <p>Total: {{ totalCarrito }} Bs</p>
     <button (click)="confirmarCompra()">Confirmar Compra</button>
   </div>
-
-  <ng-template #emptyCart>
-    <p>El carrito está vacío.</p>
-  </ng-template>
-</main>
+  
