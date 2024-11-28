@@ -21,10 +21,28 @@ export class HistorialComprasComponent implements OnInit {
   ngOnInit() {
     const user = this.auth.getCurrentUser();
     if (user) {
+      this.loadComprasFromLocalStorage();
+
       this.db.getCompras(user.uid).subscribe(compras => {
         this.compras = compras;
-        console.log('Historial de compras:', this.compras);
+        this.saveComprasToLocalStorage(compras);
+        console.log('Historial de compras cargado desde Firestore:', this.compras);
       });
+    }
+  }
+
+  saveComprasToLocalStorage(compras: any[]) {
+    console.log('Guardando compras en localStorage:', compras);
+    localStorage.setItem('compras', JSON.stringify(compras));
+  }
+
+  loadComprasFromLocalStorage() {
+    const storedCompras = localStorage.getItem('compras');
+    if (storedCompras) {
+      this.compras = JSON.parse(storedCompras);
+      console.log('Compras cargadas desde localStorage:', this.compras);
+    } else {
+      console.log('No se encontraron compras en localStorage');
     }
   }
 }
