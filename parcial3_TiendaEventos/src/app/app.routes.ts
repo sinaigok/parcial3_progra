@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { EventoComponent } from './pages/evento/evento.component';
 import { RecomendacionesComponent } from './pages/recomendaciones/recomendaciones.component';
 import { ConfirmacionCompraComponent } from './pages/confirmacioncompra/confirmacioncompra.component';
+import { ConfirmacionExitosaComponent } from './pages/confirmacion-exitosa/confirmacion-exitosa.component';
 
 export const routes: Routes = [
   { path: "inicio", component: HomeComponent },
@@ -20,5 +21,8 @@ export const routes: Routes = [
   { path: "forgot", component: ForgotPasswordComponent },
   { path: 'evento/:id', component: EventoComponent },
   { path: "reco", component: RecomendacionesComponent },
-  { path: 'checkout', component: ConfirmacionCompraComponent }
+  { path: 'checkout', component: ConfirmacionCompraComponent },
+  { path: 'confirmacion-exitosa', component: ConfirmacionExitosaComponent }, // Nueva ruta 
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' }, 
+  { path: '**', redirectTo: '/inicio' }
 ];

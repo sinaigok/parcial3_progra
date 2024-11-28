@@ -1,10 +1,38 @@
-<div>
-    <h2>Confirmación de Compra</h2>
-    <div *ngFor="let item of cartItems">
-      <p>{{ item.nombre }} - {{ item.precioTotal }} Bs</p>
+<main class="confirmacion-compra">
+  <h1>Confirmación de Compra</h1>
+
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <h2>{{ item.nombre }}</h2>
+      <p>Fecha: {{ item.fecha }}</p>
+      <p>Lugar: {{ item.lugar }}</p>
       <p>Cantidad: {{ item.cantidadEntradas }}</p>
+      <p>Precio unitario: {{ item.precio }} Bs</p>
+      <p>Precio total: {{ item.precioTotal }} Bs</p>
     </div>
-    <p>Total: {{ totalCarrito }} Bs</p>
-    <button (click)="confirmarCompra()">Confirmar Compra</button>
+
+    <h3>Total a pagar: {{ totalCarrito }} Bs</h3>
+
+    <div class="metodo-pago">
+      <label for="metodoPago">Seleccione el método de pago:</label>
+      <select id="metodoPago" [(ngModel)]="metodoPago">
+        <option value="tarjeta">Tarjeta</option>
+        <option value="qr">QR</option>
+      </select>
+    </div>
+
+    <div class="comprobante-pago">
+      <label for="comprobante">Adjunte el comprobante de pago:</label>
+      <input type="file" (change)="onFileSelected($event)" required />
+      <div *ngIf="!comprobante" class="error">
+        <p>Es necesario adjuntar un comprobante de pago para finalizar la compra.</p>
+      </div>
+    </div>
+
+    <button (click)="confirmarCompra()" [disabled]="!comprobante">Confirmar Compra</button>
   </div>
-  
+
+  <ng-template #emptyCart>
+    <p>El carrito está vacío.</p>
+  </ng-template>
+</main>

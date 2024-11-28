@@ -22,8 +22,10 @@ export class CartService {
     const item = {
       eventoId: evento.id,
       nombre: evento.name,
+      lugar: evento.location, // Añadir lugar
+      fecha: evento.date,     // Añadir fecha
       cantidadEntradas: evento.cantidadEntradas,
-      precio: evento.price,  // Asegúrate de que este valor esté correctamente definido
+      precio: evento.price,
       precioTotal: evento.cantidadEntradas * evento.price
     };
     this.cart.push(item);
