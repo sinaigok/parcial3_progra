@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { DatabaseService } from '../../services/database.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-confirmacion-compra',
@@ -16,7 +18,11 @@ export class ConfirmacionCompraComponent implements OnInit {
   metodoPago: string = 'tarjeta';
   comprobante: File | null = null;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private db: DatabaseService,
+    private auth: AuthService
+  ) {}
 
   ngOnInit() {
     const storedCart = localStorage.getItem('carrito');
@@ -48,14 +54,35 @@ export class ConfirmacionCompraComponent implements OnInit {
     }
   }
 
-  confirmarCompra() { if (!this.comprobante) { 
-    console.error('Debe adjuntar un comprobante de pago para finalizar la compra.'); 
-    return; } console.log('Compra confirmada:', this.cartItems); 
-    console.log('Método de pago:', this.metodoPago); 
-    if (this.comprobante) { 
-      console.log('Comprobante adjunto:', this.comprobante.name); 
-    } 
-    localStorage.removeItem('cart'); // Limpiar el carrito del localStorage 
-    this.router.navigate(['/confirmacion-exitosa']); 
+  async confirmarCompra() {
+    if (!this.comprobante) {
+      console.error('Debe adjuntar un comprobante de pago para finalizar la compra.');
+      return;
+    }
+  
+    const user = this.auth.getCurrentUser();
+    if (user) {
+      const compra = {
+        items: this.cartItems.map(item => ({
+          nombre: item.nombre,
+          lugar: item.lugar,
+          fecha: item.fecha,
+          cantidadEntradas: item.cantidadEntradas,
+          precio: item.precio,
+          precioTotal: item.precioTotal
+        })),
+        total: this.totalCarrito,
+        metodoPago: this.metodoPago,
+        fecha: new Date().toISOString(),
+        comprobante: this.comprobante.name
+      };
+      
+      await this.db.guardarCompra(user.uid, compra);
+      console.log('Compra guardada en la base de datos');
+      
+      localStorage.removeItem('cart'); // Limpiar el carrito del localStorage
+      this.router.navigate(['/confirmacion-exitosa']);
+    }
   }
+  
 }

@@ -10,6 +10,7 @@ import { EventoComponent } from './pages/evento/evento.component';
 import { RecomendacionesComponent } from './pages/recomendaciones/recomendaciones.component';
 import { ConfirmacionCompraComponent } from './pages/confirmacioncompra/confirmacioncompra.component';
 import { ConfirmacionExitosaComponent } from './pages/confirmacion-exitosa/confirmacion-exitosa.component';
+import { HistorialComprasComponent } from './pages/historial-compras/historial-compras.component';
 
 export const routes: Routes = [
   { path: "inicio", component: HomeComponent },
@@ -22,7 +23,8 @@ export const routes: Routes = [
   { path: 'evento/:id', component: EventoComponent },
   { path: "reco", component: RecomendacionesComponent },
   { path: 'checkout', component: ConfirmacionCompraComponent },
-  { path: 'confirmacion-exitosa', component: ConfirmacionExitosaComponent }, // Nueva ruta 
+  { path: 'confirmacion-exitosa', component: ConfirmacionExitosaComponent },
+  { path: 'historial-compras', component: HistorialComprasComponent },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/inicio' }
 ];

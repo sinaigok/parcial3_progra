@@ -12,7 +12,8 @@
       <p><strong>Nombre de Usuario:</strong> {{ profile.name }}</p>
       <p><strong>Email:</strong> {{ profile.email }}</p>
     </div>
-    
+    <h2>Historial de Compras</h2>
+    <a routerLink="/historial-compras">Ver Historial de Compras</a>
     <button [routerLink]="['/edit']" class="btn btn-secondary">Editar Perfil</button>
     <button (click)="logout()" class="btn btn-secondary">Cerrar Sesión</button>
   </div>

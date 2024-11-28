@@ -54,4 +54,16 @@ export class DatabaseService {
     for (const event of events) { await addDoc(eventsCollection, event); 
     } 
   }
+
+  // Método para guardar la compra 
+  async guardarCompra(userId: string, compra: any) { 
+    const compraRef = doc(collection(this.firestore, `users/${userId}/compras`)); 
+    await setDoc(compraRef, compra); 
+    
+  } // Método para obtener las compras de un usuario 
+  getCompras(userId: string): Observable<DocumentData[]> { 
+    const comprasRef = collection(this.firestore, `users/${userId}/compras`); 
+    const q = query(comprasRef); 
+    return collectionData(q, { idField: 'id' }); 
+  }
 }
