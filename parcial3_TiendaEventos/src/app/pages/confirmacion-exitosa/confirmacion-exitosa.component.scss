@@ -1,40 +1,23 @@
-@import '../../../styles.scss'; // Importa las variables de colores
-
-body {
-  font-family: 'Poppins', sans-serif;
-}
-
 .confirmacion-exitosa {
-  text-align: center;
-  margin-top: 50px;
-
-  h1 {
-    color: $color-primary;
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-
-  p {
-    font-size: 1.2rem;
-    color: $color-secondary;
-    margin-bottom: 20px;
-  }
-
-  button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: $color-primary;
-    color: $color-white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    font-family: 'Poppins', sans-serif; // Aplicar la tipografía
-
-    &:hover {
-      background-color: darken($color-primary, 10%);
-      transform: scale(1.05);
+    text-align: center;
+    margin-top: 50px;
+  
+    h1 {
+      color: green;
+    }
+  
+    p {
+      font-size: 1.2em;
+    }
+  
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
     }
   }
-}
+  
