@@ -1,10 +1,7 @@
-/* Estilos generales */
-* {
-  font-family: sans-serif;
-}
+@import '../../../styles.scss'; // Importa las variables de colores
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #f8f9fa;
   margin: 0;
   display: flex;
@@ -15,8 +12,8 @@ body {
 
 /* Contenedor del formulario */
 .form-container {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
+  background-color: $color-white;
+  border: 1px solid $color-secondary;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 24px;
@@ -26,62 +23,64 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+  font-family: 'Poppins', sans-serif; // Aplicar la tipografía
 
-.form-container div {
-  margin-bottom: 16px;
-}
+  div {
+    margin-bottom: 16px;
+  }
 
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #333;
-}
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: $color-secondary;
+  }
 
-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-}
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid $color-primary;
+    box-sizing: border-box;
+  }
 
-button {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  margin-top: 10px;
-}
+  button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: $color-primary;
+    color: $color-white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif; // Aplicar la tipografía
+  }
 
-button:hover {
-  background-color: #0056b3;
-  transform: scale(1.02);
-}
+  button:hover {
+    background-color: darken($color-primary, 10%);
+    transform: scale(1.02);
+  }
 
-span {
-  display: block;
-  margin-top: 16px;
-  font-size: 0.9rem;
-  color: #555;
-}
+  span {
+    display: block;
+    margin-top: 16px;
+    font-size: 0.9rem;
+    color: $color-secondary;
+  }
 
-a {
-  color: #007bff;
-  text-decoration: none;
-}
+  a {
+    color: $color-primary;
+    text-decoration: none;
+  }
 
-a:hover {
-  text-decoration: underline;
-}
+  a:hover {
+    text-decoration: underline;
+  }
 
-form div:last-child {
-  text-align: center;
+  div:last-child {
+    text-align: center;
+  }
 }

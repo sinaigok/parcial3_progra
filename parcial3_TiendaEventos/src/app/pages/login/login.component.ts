@@ -41,15 +41,4 @@ export class LoginComponent implements OnDestroy {
       alert('revise sus datos');
     }
   }
-
-  onLoginWithGoogle() {
-    this.auth.loginWithGoogle()
-      .then(() => {
-        console.log('Inicio de sesión con Google exitoso');
-      })
-      .catch(error => {
-        console.error('Error al iniciar sesión con Google', error);
-        alert('Hubo un error al iniciar sesión con Google. Por favor, inténtalo de nuevo.');
-      });
-  }
 }

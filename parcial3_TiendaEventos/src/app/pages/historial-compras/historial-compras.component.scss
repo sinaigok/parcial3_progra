@@ -1,0 +1,70 @@
+@import '../../../styles.scss'; // Importa las variables de colores
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.historial-compras {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif; // Aplicar la tipografía
+
+  h1 {
+    text-align: center;
+    color: $color-primary;
+    margin-bottom: 1.5rem;
+  }
+
+  .compra {
+    border: 1px solid $color-secondary;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: $color-white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    h2 {
+      font-size: 1.5rem;
+      color: $color-primary;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: $color-secondary;
+      margin-bottom: 0.5rem;
+
+      strong {
+        color: $color-primary;
+      }
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 0.75rem;
+
+        h3 {
+          font-size: 1.25rem;
+          color: $color-secondary;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          font-size: 1rem;
+          color: $color-secondary;
+          margin-bottom: 0.25rem;
+        }
+      }
+    }
+  }
+
+  .noCompras {
+    text-align: center;
+    font-size: 1.1rem;
+    color: $color-secondary;
+  }
+}

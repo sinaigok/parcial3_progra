@@ -1,6 +1,7 @@
-/* Estilos básicos */
-* {
-  font-family: sans-serif;
+@import '../../../styles.scss'; // Importa las variables de colores
+
+body {
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Contenedor de las tarjetas */
@@ -13,14 +14,27 @@
 
 /* Estilos básicos para las tarjetas */
 .card {
-  border: 1px solid #ddd;
+  border: 1px solid $color-primary;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin: 16px;
   transition: transform 0.2s ease-in-out;
-  flex: 1 1 calc(33.333% - 32px);
+  flex: 1 1 calc(25% - 32px); /* Ajuste para hacer las tarjetas más cuadradas */
   box-sizing: border-box;
+  background-color: $color-white;
+
+  @media (max-width: 1200px) {
+    flex: 1 1 calc(33.333% - 32px); /* Ajuste para pantallas medianas */
+  }
+
+  @media (max-width: 992px) {
+    flex: 1 1 calc(50% - 32px); /* Ajuste para pantallas pequeñas */
+  }
+
+  @media (max-width: 768px) {
+    flex: 1 1 calc(100% - 32px); /* Ajuste para pantallas extra pequeñas */
+  }
 }
 
 .card:hover {
@@ -29,24 +43,25 @@
 
 .card-img-top {
   width: 100%;
-  height: auto;
-  border-bottom: 1px solid #ddd;
+  height: 200px; /* Ajuste de altura para hacer las tarjetas más cuadradas */
+  object-fit: cover;
+  border-bottom: 1px solid $color-primary;
 }
 
 .card-body {
   padding: 16px;
-  background-color: #fff;
+  background-color: $color-white;
 }
 
 .card-title {
   font-size: 1.25rem;
   margin-bottom: 8px;
-  color: #333;
+  color: $color-secondary;
 }
 
 .card-text {
   font-size: 1rem;
-  color: #666;
+  color: $color-secondary;
   margin-bottom: 12px;
 }
 
@@ -61,31 +76,32 @@
   font-size: 15px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
+  font-family: 'Poppins', sans-serif; // Aplicar la tipografía a los botones
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-  color: #fff;
+  background-color: $color-primary;
+  border-color: $color-primary;
+  color: $color-white;
   z-index: 10000; /* Asegurar que esté sobre el app.component.html */
   position: relative; /* Asegurar que esté sobre el app.component.html */
   top: -40px;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: darken($color-primary, 10%);
 }
 
 .btn-info {
-  background-color: #17a2b8;
-  border-color: #17a2b8;
-  color: #fff;
+  background-color: $color-accent;
+  border-color: $color-accent;
+  color: $color-white;
   margin-right: 10px;
 }
 
 .btn-info:hover {
-  background-color: #138496;
-  border-color: #117a8b;
+  background-color: darken($color-accent, 10%);
+  border-color: lighten($color-accent, 10%);
 }
 
 /* Estilos del sidebar */
@@ -96,10 +112,11 @@
   z-index: 100001; /* Asegurar que esté sobre el app.component.html */
   top: 0;
   left: 0;
-  background-color: #f8f9fa;
+  background-color: $color-secondary;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  // padding-right: 20px;
   width: 300px; /* Ajustar el ancho a 300px */
 }
 
@@ -107,13 +124,13 @@
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 15px;
-  color: #343a40;
+  color: $color-white;
   display: block;
   transition: 0.3s;
 }
 
 .sidebar a:hover {
-  color: #007bff;
+  color: $color-primary;
 }
 
 .sidebar .closebtn {
@@ -125,16 +142,20 @@
 
 .filter-container {
   padding: 10px;
+  color: $color-white;
 }
 
 #category-select, #location-select {
   padding: 8px;
   border-radius: 4px;
-  border: 1px solid #ddd;
+  border: 1px solid $color-primary;
   font-size: 15px;
   margin-right: 5px; /* Añadir margen derecho para separación */
+  background-color: $color-white;
+  color: $color-secondary;
 }
 
 h2 {
   padding: 12px;
+  color: $color-primary;
 }

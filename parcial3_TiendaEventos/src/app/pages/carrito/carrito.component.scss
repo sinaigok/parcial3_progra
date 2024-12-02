@@ -1,125 +1,133 @@
-/* Contenedor del carrito */
-html, body { 
-  min-height: 100vh; /* Ocupa toda la altura del viewport */ 
+@import '../../../styles.scss'; // Importa las variables de colores
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh; /* Ocupa toda la altura del viewport */
   margin: 0; 
-  justify-content: center; 
-  align-items: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #f8f9fa; 
 }
 
 .cart-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    font-family: sans-serif;
-    margin-bottom: 30px;
+  max-width: 800px;
+  padding: 2rem;
+  border: 1px solid $color-secondary;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: $color-white;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  font-family: 'Poppins', sans-serif; // Aplicar la tipografía
 }
-  
+
 /* Encabezado */
 .cart-container h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: $color-primary;
+  font-size: 1.2rem;
 }
-  
+
 /* Elementos del carrito */
 .cart-item {
-    border-bottom: 1px solid #ddd;
-    padding: 1rem 0;
-    margin-bottom: 1rem;
-    position: relative;
+  border-bottom: 1px solid $color-primary;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  position: relative;
 }
 
 .cart-item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .btn-remove {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #000000;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: $color-secondary;
 }
 
-
 .cart-item h5 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: $color-secondary;
 }
 
 .cart-item p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: $color-secondary;
+  margin-bottom: 0.5rem;
 }
 
 .cart-item .precio {
-    text-align: left; /* Alinear el precio a la derecha */
+  text-align: left;
 }
 
 /* Botón para vaciar el carrito */
 .btn-danger {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #dc3545;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 1rem;
-    text-align: center;
-    cursor: pointer;
-    margin-top: 1rem;
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: $color-warning;
+  border: none;
+  border-radius: 4px;
+  color: $color-secondary;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-family: 'Poppins', sans-serif; // Aplicar la tipografía
 }
 
 .btn-danger:hover {
-    background-color: #c82333;
+  background-color: darken($color-warning, 10%);
 }
 
 .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  background-color: $color-primary;
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif; // Aplicar la tipografía
 }
 
 .btn-primary {
-    background-color: #007bff;
-    color: white;
+  background-color: $color-primary;
+  color: $color-white;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+  background-color: darken($color-primary, 10%);
 }
 
 .btn-ver-detalle {
-    background-color: #17a2b8;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    font-size: 0.9rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    margin-top: 10px;
+  background-color: $color-accent;
+  color: $color-white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 10px;
 }
 
 .btn-ver-detalle:hover {
-    background-color: #117a8b;
-    transform: scale(1.05);
+  background-color: darken($color-accent, 10%);
+  transform: scale(1.05);
 }
-  
+
 /* Mensaje de carrito vacío */
 .ng-template {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #666;
+  text-align: center;
+  font-size: 1.1rem;
+  color: $color-secondary;
 }

@@ -1,54 +1,61 @@
-  *{
-    font-family: sans-serif;
-  }
-  nav {
-    background-color: #007bff;
-    padding: 1em;
-  }
-  
-  nav ul {
+@import '../styles.scss'; // Importa las variables de colores
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+nav {
+  background-color: $color-primary;
+  padding: 1em;
+
+  ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: space-around;
   }
-  
-  nav li {
+
+  li {
     display: inline;
   }
-  
-  nav a {
+
+  a {
     text-decoration: none;
-    color: white;
+    color: $color-white;
     font-weight: bold;
     padding: 0.5em;
     transition: background-color 0.3s;
+
+    &:hover {
+      background-color: lighten($color-primary, 10%);
+    }
   }
-  
-  nav a:hover {
-    background-color: #45a049;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: #333;
-  }
-  
-  p {
-    line-height: 1.6;
-    margin-bottom: 1em;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2em;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  html, body {
+}
+
+/* Estilos adicionales */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  color: $color-secondary;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1em;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: $color-white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos de la estructura */
+html, body {
   height: 100%;
   margin: 0;
   display: flex;
@@ -66,27 +73,25 @@
 }
 
 .footer {
-  background-color: #343a40;
-  color: white;
+  background-color: $color-secondary;
+  color: $color-white;
   text-align: center;
   padding: 20px 0;
   width: 100%;
   bottom: 0;
-}
 
-.footer .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
 
-.footer a {
-  color: #ffffff;
-  text-decoration: none;
-}
+  a {
+    color: $color-white;
+    text-decoration: none;
 
-.footer a:hover {
-  text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
-
-  
