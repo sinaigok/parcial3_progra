@@ -1,0 +1,21 @@
+@import '../../../styles.scss'; // Importa las variables de colores
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.eventos {
+  background-color: rgba(211, 211, 211, 0.419); // Fondo gris claro
+  border: 1px solid black; // Borde negro de 1px
+  padding: 10px;
+}
+
+a {
+  color: $color-secondary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    color: $color-accent;
+  }
+}

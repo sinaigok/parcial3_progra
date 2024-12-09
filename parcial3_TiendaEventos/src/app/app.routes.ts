@@ -11,6 +11,9 @@ import { RecomendacionesComponent } from './pages/recomendaciones/recomendacione
 import { ConfirmacionCompraComponent } from './pages/confirmacioncompra/confirmacioncompra.component';
 import { ConfirmacionExitosaComponent } from './pages/confirmacion-exitosa/confirmacion-exitosa.component';
 import { HistorialComprasComponent } from './pages/historial-compras/historial-compras.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { EventoEditableComponent } from './pages/evento-editable/evento-editable.component';
+import { Component } from '@angular/core';
 
 export const routes: Routes = [
   { path: "inicio", component: HomeComponent },
@@ -21,10 +24,12 @@ export const routes: Routes = [
   { path: "edit", component: EditProfileComponent },
   { path: "forgot", component: ForgotPasswordComponent },
   { path: 'evento/:id', component: EventoComponent },
+  {path: 'evento_edit/:id', component: EventoEditableComponent},
   { path: "reco", component: RecomendacionesComponent },
   { path: 'checkout', component: ConfirmacionCompraComponent },
   { path: 'confirmacion-exitosa', component: ConfirmacionExitosaComponent },
   { path: 'historial-compras', component: HistorialComprasComponent },
+  {path: 'admin',component:AdminComponent},
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/inicio' }
 ];
