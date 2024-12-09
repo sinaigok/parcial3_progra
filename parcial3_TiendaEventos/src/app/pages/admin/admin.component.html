@@ -1,6 +1,8 @@
 
+<a routerLink="/new" class="btn">Crear Evento</a>
 <div *ngFor="let evento of eventos" class="eventos">
     <a [routerLink]="['/evento_edit', evento.id]" class="name">{{ evento.name }}</a>
   </div>
+
   
   

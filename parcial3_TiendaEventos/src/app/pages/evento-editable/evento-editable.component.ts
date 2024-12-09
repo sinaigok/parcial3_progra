@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { DatabaseService } from '../../services/database.service';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-evento-editable',
@@ -22,6 +22,8 @@ export class EventoEditableComponent implements OnInit {
     ticketsAvailable: 0
   };
 
+  eventodelete: any = []; // Declaración de eventodelete
+
   // Estados de edición para cada campo
   editingName = false;
   editingDate = false;
@@ -32,7 +34,8 @@ export class EventoEditableComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private db: DatabaseService,
-    public auth: AuthService
+    public auth: AuthService,
+    private router: Router 
   ) {}
 
   ngOnInit() {
@@ -91,6 +94,20 @@ export class EventoEditableComponent implements OnInit {
         },
         (error) => {
           console.error('Error al actualizar el evento', error);
+        }
+      );
+    }
+  }
+
+  handleDelete() {
+    if (this.eventedit) {
+      this.db.deleteFirestoreDocument('eventos', this.eventedit).then(
+        () => {
+          console.log('Evento eliminado correctamente.');
+          this.router.navigate(['/admin']); // Redirigir a /admin después de eliminar
+        },
+        (error) => {
+          console.error('Error al eliminar el evento:', error);
         }
       );
     }

@@ -69,7 +69,6 @@ body {
     font-family: 'Poppins', sans-serif; // Aplicar la tipografía
     transition: background-color 0.3s, transform 0.2s;
     margin-top: 20px;
-    
 
     &.btn-add-cart {
       background-color: $color-primary;
@@ -95,4 +94,8 @@ body {
       cursor: not-allowed;
     }
   }
+}
+.eliminar{
+  background-color: rgb(190, 217, 190);
+  margin-left: 190px ;
 }
