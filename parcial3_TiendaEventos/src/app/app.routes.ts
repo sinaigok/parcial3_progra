@@ -13,6 +13,7 @@ import { ConfirmacionExitosaComponent } from './pages/confirmacion-exitosa/confi
 import { HistorialComprasComponent } from './pages/historial-compras/historial-compras.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { EventoEditableComponent } from './pages/evento-editable/evento-editable.component';
+import { NewEventComponent } from './pages/new-event/new-event.component';
 import { Component } from '@angular/core';
 
 export const routes: Routes = [
@@ -30,6 +31,7 @@ export const routes: Routes = [
   { path: 'confirmacion-exitosa', component: ConfirmacionExitosaComponent },
   { path: 'historial-compras', component: HistorialComprasComponent },
   {path: 'admin',component:AdminComponent},
+  {path: 'new', component:NewEventComponent},
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/inicio' }
 ];

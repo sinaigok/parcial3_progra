@@ -1,0 +1,50 @@
+<!-- new-event.component.html -->
+<div class="form-container">
+  
+    <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+      <div class="card">
+        <div>
+          <label for="eventId">ID del Evento:</label>
+          <input type="text" id="eventId" required [(ngModel)]="newEvent.id" name="id">
+        </div>
+        <div>
+          <label for="eventName">Nombre del Evento:</label>
+          <input type="text" id="eventName" required [(ngModel)]="newEvent.name" name="name">
+        </div>
+        <div>
+          <label for="eventDate">Fecha del Evento:</label>
+          <input type="datetime-local" id="eventDate" required [(ngModel)]="newEvent.date" name="date">
+        </div>
+        <div>
+          <label for="eventArtists">Artistas:</label>
+          <input type="text" id="eventArtists" required [(ngModel)]="newEvent.artists" name="artists">
+        </div>
+        <div>
+          <label for="ticketsAvailable">Entradas Disponibles:</label>
+          <input type="number" id="ticketsAvailable" required [(ngModel)]="newEvent.ticketsAvailable" name="ticketsAvailable">
+        </div>
+        <div>
+          <label for="totalTickets">Entradas Totales:</label>
+          <input type="number" id="totalTickets" required [(ngModel)]="newEvent.totalTickets" name="totalTickets">
+        </div>
+        <div>
+          <label for="eventLocation">Ubicación del Evento:</label>
+          <input type="text" id="eventLocation" required [(ngModel)]="newEvent.location" name="location">
+        </div>
+        <div>
+          <label for="eventCategory">Categoría:</label>
+          <input type="text" id="eventCategory" required [(ngModel)]="newEvent.category" name="category">
+        </div>
+        <div>
+          <label for="musicGenre">Género Musical (Opcional):</label>
+          <input type="text" id="musicGenre" [(ngModel)]="newEvent.musicGenre" name="musicGenre">
+        </div>
+        <div>
+          <label for="eventPrice">Precio:</label>
+          <input type="number" id="eventPrice" required [(ngModel)]="newEvent.price" name="price">
+        </div>
+        <button type="submit" class="btn-add">Añadir Evento</button>
+      </div>
+    </form>
+  </div>
+  
