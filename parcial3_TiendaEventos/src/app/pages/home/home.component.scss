@@ -14,7 +14,9 @@ body {
 
 /* Estilos básicos para las tarjetas */
 .card {
+  position: relative; /* Para asegurar que el texto se posicione correctamente */
   border: 1px solid $color-primary;
+  text-align: center;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -37,20 +39,38 @@ body {
   }
 }
 
+.highlight-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e2ab12;
+  color: $color-white;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
 .card:hover {
   transform: scale(1.02);
 }
 
 .card-img-top {
-  width: 100%;
+  width: 80%;
   height: 200px; /* Ajuste de altura para hacer las tarjetas más cuadradas */
   object-fit: cover;
-  border-bottom: 1px solid $color-primary;
+  border: 1px solid $color-primary;
+  display: inline-block;
+  border-radius: 10px;
+  margin-top: 50px;
 }
 
 .card-body {
   padding: 16px;
   background-color: $color-white;
+  padding-top: 0;
 }
 
 .card-title {
@@ -116,7 +136,6 @@ body {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
-  // padding-right: 20px;
   width: 300px; /* Ajustar el ancho a 300px */
 }
 

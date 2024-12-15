@@ -8,7 +8,10 @@
       <p>Lugar: {{ item.lugar }}</p>
       <p>Cantidad: {{ item.cantidadEntradas }}</p>
       <p>Precio unitario: {{ item.precio }} Bs</p>
-      <p>Precio total: {{ item.precioTotal }} Bs</p>
+      <p *ngIf="item.descuento && item.descuento.valorDescuento > 0">Precio con Descuento: 
+        {{ (item.precio - (item.precio * item.descuento.valorDescuento / 100)) | number : '1.2-2' }} Bs
+      </p>
+      <p>Precio total: {{ item.cantidadEntradas * (item.precio - (item.descuento ? item.precio * item.descuento.valorDescuento / 100 : 0)) | number : '1.2-2' }} Bs</p>
     </div>
 
     <h3>Total a pagar: {{ totalCarrito }} Bs</h3>

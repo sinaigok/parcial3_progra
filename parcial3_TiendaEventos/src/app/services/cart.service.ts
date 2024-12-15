@@ -19,14 +19,18 @@ export class CartService {
   }
 
   addToCart(evento: any) {
+    const precioConDescuento = evento.descuento && evento.descuento.valorDescuento > 0 
+      ? evento.price - (evento.price * evento.descuento.valorDescuento / 100)
+      : evento.price;
+
     const item = {
       eventoId: evento.id,
       nombre: evento.name,
       lugar: evento.location, // Añadir lugar
       fecha: evento.date,     // Añadir fecha
       cantidadEntradas: evento.cantidadEntradas,
-      precio: evento.price,
-      precioTotal: evento.cantidadEntradas * evento.price
+      precio: precioConDescuento,
+      precioTotal: evento.cantidadEntradas * precioConDescuento
     };
     this.cart.push(item);
     localStorage.setItem('cart', JSON.stringify(this.cart));

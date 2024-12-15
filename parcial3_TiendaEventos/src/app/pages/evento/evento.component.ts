@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { RecomendacionesComponent } from '../recomendaciones/recomendaciones.component';
 import { CartService } from '../../services/cart.service';
 import { AuthService } from '../../services/auth.service';
+import { disablePersistentCacheIndexAutoCreation } from 'firebase/firestore';
 
 @Component({
   selector: 'app-evento',
@@ -57,14 +58,18 @@ export class EventoComponent implements OnInit {
       evento.ticketsAvailable -= this.cantidadEntradas;
 
       const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+      const precioConDescuento = evento.descuento && evento.descuento.valorDescuento > 0 
+        ? evento.price - (evento.price * evento.descuento.valorDescuento / 100)
+        : evento.price;
       const itemCarrito = {
         eventoId: evento.id,
         nombre: evento.name,
         lugar: evento.location, // Añadir lugar
         fecha: evento.date,     // Añadir fecha
+        descuento: evento.descuento,
         cantidadEntradas: this.cantidadEntradas,
-        precio: evento.price,
-        precioTotal: this.cantidadEntradas * evento.price
+        precio: precioConDescuento,
+        precioTotal: this.cantidadEntradas * precioConDescuento
       };
 
       if (isNaN(itemCarrito.precio)) {

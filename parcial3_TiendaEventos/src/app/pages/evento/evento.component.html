@@ -1,13 +1,24 @@
-<div class="evento-container" *ngIf="evento">
+<div class="evento-container" *ngIf="evento" [ngClass]="{'destacado': evento.destacado}">
   <div class="evento-detalle">
+    <div *ngIf="evento.destacado" class="highlight-text">Evento Destacado</div>
+    
     <h1>{{ evento.name }}</h1>
     <img [src]="evento.imageUrl" alt="{{ evento.name }}">
     <p>{{ evento.description }}</p>
     <p><strong>Fecha:</strong> {{ evento.date | date:'medium' }}</p>
     <p><strong>Lugar:</strong> {{ evento.location }}</p>
-    <p><strong>Precio:</strong> {{ evento.price }} Bs</p>
+    <p><strong>Descuento:</strong> {{ evento.descuento ? evento.descuento.valorDescuento : 'N/A' }}%</p>
+    <p><strong>Precio:</strong>
+      <span *ngIf="evento.descuento && evento.descuento.valorDescuento > 0">
+        <s>{{ evento.price }} Bs</s>
+        <strong>{{ (evento.price - (evento.price * evento.descuento.valorDescuento / 100)) | number : '1.2-2' }} Bs</strong>
+      </span>
+      <span *ngIf="!evento.descuento || evento.descuento.valorDescuento === 0">
+        {{ evento.price }} Bs
+      </span>
+    </p>
     <p><strong>Entradas Disponibles:</strong> {{ evento.ticketsAvailable - cantidadEntradas }}</p>
-    
+
     <!-- Nuevo campo para la cantidad de entradas -->
     <div>
       <label for="cantidad">Cantidad de Entradas:</label>

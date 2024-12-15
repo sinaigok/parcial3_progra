@@ -34,13 +34,25 @@ export class DatabaseService {
   // Método para agregar un documento a una colección en Firestore
   addFirestoreDocument(collectionName: string, data: any): Promise<any> {
     const collectionRef = collection(this.firestore, collectionName);
-    return addDoc(collectionRef, data);  // Añade un nuevo documento con los datos proporcionados
+    // Asegurarse de que los datos incluyen los campos nuevos por defecto si no están presentes
+    const newData = {
+      destacado: data.destacado ?? false,
+      descuento: data.descuento ?? { valorDescuento: 0 },
+      ...data
+    };
+    return addDoc(collectionRef, newData);
   }
 
   // Método para actualizar un documento existente en una colección en Firestore
   updateFirestoreDocument(collectionName: string, uuid: string, data: any): Promise<void> {
     const docRef = doc(this.firestore, `${collectionName}/${uuid}`);
-    return updateDoc(docRef, data);  // Actualiza el documento con los datos proporcionados
+    // Asegurarse de que los datos incluyen los campos nuevos por defecto si no están presentes
+    const updatedData = {
+      destacado: data.destacado ?? false,
+      descuento: data.descuento ?? { valorDescuento: 0 },
+      ...data
+    };
+    return updateDoc(docRef, updatedData);
   }
 
   // Método para eliminar un documento de una colección en Firestore
@@ -51,7 +63,8 @@ export class DatabaseService {
 
   async addEvents(events: any[]): Promise<void> { 
     const eventsCollection = collection(this.firestore, 'eventos'); 
-    for (const event of events) { await addDoc(eventsCollection, event); 
+    for (const event of events) { 
+      await addDoc(eventsCollection, event); 
     } 
   }
 
@@ -59,8 +72,9 @@ export class DatabaseService {
   async guardarCompra(userId: string, compra: any) { 
     const compraRef = doc(collection(this.firestore, `users/${userId}/compras`)); 
     await setDoc(compraRef, compra); 
-    
-  } // Método para obtener las compras de un usuario 
+  }
+
+  // Método para obtener las compras de un usuario 
   getCompras(userId: string): Observable<DocumentData[]> { 
     const comprasRef = collection(this.firestore, `users/${userId}/compras`); 
     const q = query(comprasRef); 

@@ -53,7 +53,7 @@ export class CarritoComponent implements OnInit {
         return;
       }
       item.cantidadEntradas = cantidadNumerica;
-      item.precioTotal = cantidadNumerica * item.precio;
+      item.precioTotal = cantidadNumerica * (item.precio - (item.descuento ? item.precio * item.descuento.valorDescuento / 100 : 0));
 
       // Log para verificar precio
       if (isNaN(item.precio)) {

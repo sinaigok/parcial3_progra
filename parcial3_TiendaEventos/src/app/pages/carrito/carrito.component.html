@@ -17,7 +17,14 @@
         <p><strong>Cantidad de entradas:</strong> 
           <input type="number" [(ngModel)]="item.cantidadEntradas" (change)="updateQuantity(item.eventoId, item.cantidadEntradas)" min="1"/>
         </p>
-        <p class="precio"><strong>Precio Total:</strong> {{ item.precioTotal }} Bs</p>
+        <p class="precio"><strong>Precio Unitario:</strong> {{ item.precio }} Bs</p>
+        <p class="precio" *ngIf="item.descuento && item.descuento.valorDescuento > 0">
+          <strong>Precio con Descuento:</strong> 
+          {{ (item.precio - (item.precio * item.descuento.valorDescuento / 100)) | number : '1.2-2' }} Bs
+        </p>
+        <p class="precio"><strong>Precio Total:</strong> 
+          {{ item.cantidadEntradas * (item.precio - (item.descuento ? item.precio * item.descuento.valorDescuento / 100 : 0)) | number : '1.2-2' }} Bs
+        </p>
       </div>
       <div class="total-carrito">
         <p><strong>Total del Carrito:</strong> {{ totalCarrito }} Bs</p>

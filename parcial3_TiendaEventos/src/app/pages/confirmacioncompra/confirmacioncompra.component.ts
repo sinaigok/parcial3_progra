@@ -69,7 +69,8 @@ export class ConfirmacionCompraComponent implements OnInit {
           fecha: item.fecha,
           cantidadEntradas: item.cantidadEntradas,
           precio: item.precio,
-          precioTotal: item.precioTotal
+          precioTotal: item.precioTotal,
+          descuento: item.descuento ?? { valorDescuento: 0 }  // Asegurarse de incluir el descuento
         })),
         total: this.totalCarrito,
         metodoPago: this.metodoPago,
@@ -80,9 +81,8 @@ export class ConfirmacionCompraComponent implements OnInit {
       await this.db.guardarCompra(user.uid, compra);
       console.log('Compra guardada en la base de datos');
       
-      localStorage.removeItem('cart'); // Limpiar el carrito del localStorage
+      localStorage.removeItem('carrito'); // Limpiar el carrito del localStorage
       this.router.navigate(['/confirmacion-exitosa']);
     }
   }
-  
 }

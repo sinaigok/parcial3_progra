@@ -1,44 +1,54 @@
 <div class="card-container">
-    <div class="card">
-      <div>
-        <label>Nombre:</label>
-        <span *ngIf="!editingName">{{ evento.name }}</span>
-        <input *ngIf="editingName" type="text" [(ngModel)]="evento.name">
-        <button (click)="toggleEdit('name')">{{ editingName ? 'Guardar' : 'Editar' }}</button>
-      </div>
-    
-      <div>
-        <label>Fecha:</label>
-        <span *ngIf="!editingDate">{{ evento.date | date: 'shortDate' }}</span>
-        <input *ngIf="editingDate" type="date" [(ngModel)]="evento.date">
-        <button (click)="toggleEdit('date')">{{ editingDate ? 'Guardar' : 'Editar' }}</button>
-      </div>
-    
-      <div>
-        <label>Ubicación:</label>
-        <span *ngIf="!editingLocation">{{ evento.location }}</span>
-        <input *ngIf="editingLocation" type="text" [(ngModel)]="evento.location">
-        <button (click)="toggleEdit('location')">{{ editingLocation ? 'Guardar' : 'Editar' }}</button>
-      </div>
-    
-      <div>
-        <label>Precio:</label>
-        <span *ngIf="!editingPrice">{{ evento.price }}</span>
-        <input *ngIf="editingPrice" type="number" [(ngModel)]="evento.price">
-        <button (click)="toggleEdit('price')">{{ editingPrice ? 'Guardar' : 'Editar' }}</button>
-      </div>
-    
-      <div>
-        <label>Entradas Disponibles:</label>
-        <span *ngIf="!editingTickets">{{ evento.ticketsAvailable }}</span>
-        <input *ngIf="editingTickets" type="number" [(ngModel)]="evento.ticketsAvailable">
-        <button (click)="toggleEdit('tickets')">{{ editingTickets ? 'Guardar' : 'Editar' }}</button>
-      </div>
-    
-      <!-- Botón para guardar todos los cambios -->
-      <button (click)="onSubmit()" [disabled]="!isAnyFieldEditing()">Guardar todos los cambios</button>
-      <button class="eliminar" (click)="handleDelete() ">Eliminar Evento</button>
-    </div>
+  <div class="card">
+    <div>
+      <label>Nombre:</label>
+      <span *ngIf="!editingName">{{ evento.name }}</span>
+      <input *ngIf="editingName" type="text" [(ngModel)]="evento.name">
+      <button (click)="toggleEdit('name')">{{ editingName ? 'Guardar' : 'Editar' }}</button>
     </div>
 
-  
+    <div>
+      <label>Fecha:</label>
+      <span *ngIf="!editingDate">{{ evento.date | date: 'shortDate' }}</span>
+      <input *ngIf="editingDate" type="date" [(ngModel)]="evento.date">
+      <button (click)="toggleEdit('date')">{{ editingDate ? 'Guardar' : 'Editar' }}</button>
+    </div>
+
+    <div>
+      <label>Ubicación:</label>
+      <span *ngIf="!editingLocation">{{ evento.location }}</span>
+      <input *ngIf="editingLocation" type="text" [(ngModel)]="evento.location">
+      <button (click)="toggleEdit('location')">{{ editingLocation ? 'Guardar' : 'Editar' }}</button>
+    </div>
+
+    <div>
+      <label>Precio:</label>
+      <span *ngIf="!editingPrice">{{ evento.price }}</span>
+      <input *ngIf="editingPrice" type="number" [(ngModel)]="evento.price">
+      <button (click)="toggleEdit('price')">{{ editingPrice ? 'Guardar' : 'Editar' }}</button>
+    </div>
+
+    <div>
+      <label>Entradas Disponibles:</label>
+      <span *ngIf="!editingTickets">{{ evento.ticketsAvailable }}</span>
+      <input *ngIf="editingTickets" type="number" [(ngModel)]="evento.ticketsAvailable">
+      <button (click)="toggleEdit('tickets')">{{ editingTickets ? 'Guardar' : 'Editar' }}</button>
+    </div>
+
+    <!-- Campo para Destacado -->
+    <div>
+      <label>Destacado:</label>
+      <input type="checkbox" [(ngModel)]="evento.destacado">
+    </div>
+
+    <!-- Campo para Descuento -->
+    <div *ngIf="evento.descuento">
+      <label>Descuento:</label>
+      <input type="number" [(ngModel)]="evento.descuento.valorDescuento" min="0">
+    </div>
+
+    <!-- Botón para guardar todos los cambios -->
+    <button (click)="onSubmit()" [disabled]="!isAnyFieldEditing()">Guardar todos los cambios</button>
+    <button class="eliminar" (click)="handleDelete()">Eliminar Evento</button>
+  </div>
+</div>

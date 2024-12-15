@@ -14,12 +14,15 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 })
 export class EventoEditableComponent implements OnInit {
   eventedit: string | null = null;
+  originalEvento: any = {}; // Guardar una copia del evento original
   evento: any = {
     name: '',
     date: '',
     location: '',
     price: 0,
-    ticketsAvailable: 0
+    ticketsAvailable: 0,
+    destacado: false,
+    descuento: { valorDescuento: 0 }
   };
 
   eventodelete: any = []; // Declaración de eventodelete
@@ -48,7 +51,12 @@ export class EventoEditableComponent implements OnInit {
   getEventDetail(eventId: string) {
     this.db.getDocumentById('eventos', eventId).subscribe(
       (evento: any) => {
-        this.evento = { ...evento, addedToCart: false };
+        this.evento = {
+          ...evento,
+          addedToCart: false,
+          descuento: evento.descuento ?? { valorDescuento: 0 }
+        };
+        this.originalEvento = { ...this.evento }; // Guardar una copia del evento original
       },
       (error: any) => {
         console.error('Error al obtener el detalle del evento', error);
@@ -76,8 +84,9 @@ export class EventoEditableComponent implements OnInit {
     }
   }
 
+  // Función para verificar si hay cambios en el formulario
   isAnyFieldEditing(): boolean {
-    return this.editingName || this.editingDate || this.editingLocation || this.editingPrice || this.editingTickets;
+    return JSON.stringify(this.evento) !== JSON.stringify(this.originalEvento);
   }
 
   onSubmit() {
@@ -91,6 +100,7 @@ export class EventoEditableComponent implements OnInit {
           this.editingLocation = false;
           this.editingPrice = false;
           this.editingTickets = false;
+          this.originalEvento = { ...this.evento }; // Actualizar la copia del evento original
         },
         (error) => {
           console.error('Error al actualizar el evento', error);

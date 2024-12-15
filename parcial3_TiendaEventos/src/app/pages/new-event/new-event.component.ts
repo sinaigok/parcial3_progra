@@ -1,16 +1,17 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { DatabaseService } from '../../services/database.service';
 import { Firestore } from '@angular/fire/firestore';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-new-event',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   templateUrl: './new-event.component.html',
-  styleUrl: './new-event.component.scss'
+  styleUrls: ['./new-event.component.scss']
 })
 export class NewEventComponent implements OnInit {
   eventos: any[] = [];
@@ -25,7 +26,9 @@ export class NewEventComponent implements OnInit {
     category: '',
     musicGenre: '',
     price: 0,
-    imageUrl: ''
+    imageUrl: '',
+    destacado: false, // Nuevo campo
+    descuento: { valorDescuento: 0 } // Nuevo campo
   }; // Define newEvent para el formulario
 
   constructor(
@@ -73,7 +76,9 @@ export class NewEventComponent implements OnInit {
         category: '',
         musicGenre: '',
         price: 0,
-        imageUrl: ''
+        imageUrl: '',
+        destacado: false,
+        descuento: { valorDescuento: 0 }
       }; // Reinicia el formulario
       console.log('Evento agregado con éxito');
     } catch (error) {

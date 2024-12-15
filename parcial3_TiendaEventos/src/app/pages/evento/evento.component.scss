@@ -12,6 +12,15 @@ body {
   font-family: 'Poppins', sans-serif; // Aplicar la tipografía
 }
 
+.highlight-text {
+  background-color: #e2ab12;
+  color: $color-white;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 30px;
+}
+
 .evento-detalle {
   text-align: center;
   border: 1px solid $color-secondary;
