@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
   }
 
   openSidebar() {
-    document.getElementById('sidebar')!.style.width = '330px'; // Ajustar el ancho a 330px
+    document.getElementById('sidebar')!.style.width = '360px'; // Ajustar el ancho a 330px
   }
 
   closeSidebar() {

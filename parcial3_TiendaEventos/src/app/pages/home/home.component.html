@@ -25,7 +25,8 @@
 <div *ngIf="filteredEventos.length > 0" class="cards-container">
   <div *ngFor="let evento of filteredEventos" class="card">
     <div *ngIf="evento.destacado" class="highlight-text">Evento Destacado</div>
-    <img class="card-img-top" [src]="evento.imageUrl || 'default-image.jpg'" alt="Card image cap">
+    <div *ngIf="evento.descuento && evento.descuento.valorDescuento > 0" class="descuento"> On Sale!</div>
+    <!-- <img class="card-img-top" [src]="evento.imageUrl || 'default-image.jpg'" alt="Card image cap"> -->
     <div class="card-body">
       <h5 class="card-title">{{ evento.name }}</h5>
       <p class="card-text">{{ evento.description }}</p>

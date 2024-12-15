@@ -178,3 +178,15 @@ h2 {
   padding: 12px;
   color: $color-primary;
 }
+.descuento {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(0);
+  background-color: $color-primary; /* Verde claro */
+  color: $color-white;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom-left-radius: 8px;
+}
