@@ -108,7 +108,7 @@ body {
   color: $color-white;
   z-index: 10000; /* Asegurar que esté sobre el app.component.html */
   position: relative; /* Asegurar que esté sobre el app.component.html */
-  top: -40px;
+  top: -115px;
 }
 
 .btn-primary:hover {
@@ -200,4 +200,19 @@ h2 {
   font-size: 14px;
   font-weight: bold;
   border-bottom-left-radius: 8px;
+}
+
+.search-container {
+  margin: 16px;
+  text-align: center;
+}
+
+.search-container input {
+  width: 80%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid $color-primary;
+  font-size: 15px;
+  background-color: $color-white;
+  color: $color-secondary;
 }

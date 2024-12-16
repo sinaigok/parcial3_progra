@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   destacado : boolean=false;
   descuento: number=0;
   searchform: FormGroup;
+  searchTerm: string = '';
 
   constructor(
     public auth: AuthService,
@@ -50,6 +51,7 @@ ngOnInit() {
 
       // Suscribirse a los cambios en el término de búsqueda
       this.searchform.get('eventosearch')!.valueChanges.subscribe(searchTerm => {
+        this.searchTerm = searchTerm.toLowerCase();
         this.applyFilters();
       });
 
@@ -95,6 +97,11 @@ ngOnInit() {
     this.applyFilters();
   }
 
+  onSearch(event: Event) {
+    this.searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    this.applyFilters();
+  }
+
   applyFilters() {
     console.log('Aplicando filtros en home...');
     this.filteredEventos = this.eventos
@@ -102,7 +109,9 @@ ngOnInit() {
       .filter(evento => this.selectedLocation === '' || evento.location === this.selectedLocation)
       .filter(evento => this.selectedDate === '' || new Date(evento.date).toDateString() === new Date(this.selectedDate).toDateString())
       .filter(evento => !this.searchform.get('destacado')!.value || evento.destacado) // Filtro para eventos destacados
-      .filter(evento => !this.searchform.get('descuento')!.value || (evento.descuento && evento.descuento.valorDescuento > 0)); // Filtro para eventos con descuentos mayores a 0
+      .filter(evento => !this.searchform.get('descuento')!.value || (evento.descuento && evento.descuento.valorDescuento > 0)) // Filtro para eventos con descuentos mayores a 0
+      .filter(evento => this.searchTerm === '' || evento.name.toLowerCase().includes(this.searchTerm) || 
+      (evento.artists && Array.isArray(evento.artists) && evento.artists.some((artist: string) => artist.toLowerCase().includes(this.searchTerm))));
     console.log('Eventos filtrados:', this.filteredEventos);
   }
   
