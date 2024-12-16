@@ -1,0 +1,25 @@
+<div class="crear-review">
+    <h1>Dejar una Reseña para {{ eventName }}</h1>
+    <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+      <div class="form-group">
+        <label for="reviewText">Reseña:</label>
+        <textarea id="reviewText" formControlName="reviewText" class="form-control" required></textarea>
+        <div *ngIf="reviewForm.get('reviewText')?.invalid && (reviewForm.get('reviewText')?.dirty || reviewForm.get('reviewText')?.touched)" class="error-message">
+          <div *ngIf="reviewForm.get('reviewText')?.errors">La reseña es obligatoria.</div>
+          <div *ngIf="reviewForm.get('reviewText')?.errors">La reseña debe tener un máximo de 600 caracteres.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="rating">Calificación:</label>
+        <select id="rating" formControlName="rating" class="form-control" required>
+          <option *ngFor="let rating of [1, 2, 3, 4, 5]" [value]="rating">{{ rating }}</option>
+        </select>
+        <div *ngIf="reviewForm.get('rating')?.invalid && (reviewForm.get('rating')?.dirty || reviewForm.get('rating')?.touched)" class="error-message">
+          La calificación es obligatoria y debe estar entre 1 y 5.
+        </div>
+      </div>
+      
+      <button type="submit" [disabled]="reviewForm.invalid" class="submit-button">Enviar Reseña</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,85 @@
+@import '../../../styles.scss'; // Importa las variables de colores
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.crear-review {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+
+  h1 {
+    text-align: center;
+    color: $color-primary;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    display: block; /* Asegurarse de que los grupos de formulario sean bloques */
+
+    label {
+      margin-bottom: 5px;
+      color: $color-secondary;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: 'Poppins', sans-serif;
+      resize: vertical; /* Permitir el ajuste vertical del tamaño del textarea */
+      display: block; /* Asegurarse de que los controles de formulario sean bloques */
+    }
+
+    .form-control:focus {
+      border-color: $color-primary;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.875rem;
+      display: block; /* Asegurarse de que los mensajes de error sean bloques */
+    }
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Poppins', sans-serif; // Aplicar la tipografía a los botones
+  }
+
+  .btn-primary {
+    background-color: $color-primary;
+    border-color: $color-primary;
+    color: $color-white;
+    z-index: 10000; /* Asegurar que esté sobre el app.component.html */
+    position: relative; /* Asegurar que esté sobre el app.component.html */
+    top: -40px;
+
+    &:hover {
+      background-color: darken($color-primary, 10%);
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}

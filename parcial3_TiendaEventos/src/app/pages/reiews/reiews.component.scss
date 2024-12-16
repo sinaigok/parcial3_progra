@@ -1,0 +1,53 @@
+@import '../../../styles.scss'; // Importa las variables de colores
+
+.review-list {
+  margin: 20px auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+  color: $color-primary;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.review-cards {
+  display: flex;
+  gap: 20px; /* Padding entre las tarjetas */
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
+
+.review-item {
+  display: inline-block;
+  border: 1px solid $color-secondary;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-align: left; /* Alinear el texto a la izquierda */
+  height: 200px; /* Altura fija */
+  width: 450px; /* Ancho automático */
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: $color-white;
+  margin-right: 20px;
+
+  h2 {
+    margin: 0;
+    font-size: 1rem;
+    color: $color-secondary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  p {
+    margin: 5px 0;
+    color: $color-secondary;
+    font-size: 0.9rem;
+  }
+}

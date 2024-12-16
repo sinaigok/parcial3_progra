@@ -1,0 +1,11 @@
+<div class="review-list">
+    <h1>Reseñas de los Usuarios</h1>
+    <div *ngFor="let review of reviews$ | async" class="review-item">
+      <h2>{{ review.eventName }}</h2>
+      <p><strong>Reseña:</strong> {{ review.text }}</p>
+      <p><strong>Calificación:</strong> {{ review.rating }} / 5</p>
+      <p><strong>Usuario:</strong> {{ review.username }}</p>
+      <p><strong>Fecha:</strong> {{ review.date | date:'short' }}</p>
+    </div>
+  </div>
+  

@@ -2,20 +2,41 @@
 <div id="sidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" (click)="closeSidebar()">&times;</a>
   <h2>Filtrar</h2>
-  <div class="filter-container">
-    <h3>Categorías</h3>
-    <select id="category-select" (change)="filterByCategory($event)">
-      <option value="">Todas las categorías</option>
-      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-    </select>
-  </div>
-  <div class="filter-container">
-    <h3>Ubicación</h3>
-    <select id="location-select" (change)="filterByLocation($event)">
-      <option value="">Todos los lugares</option>
-      <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
-    </select>
-  </div>
+  <form [formGroup]="searchform">
+    <!-- <h3 class="buscar">Buscar</h3>
+    <div class="buscador">
+      <input formControlName="eventosearch" type="text" id="eventosearch" class="buscadorl">
+    </div> -->
+
+    <div class="filter-container">
+      <h3>Categorías</h3>
+      <select id="category-select" (change)="filterByCategory($event)" class="form-control">
+        <option value="">Todas las categorías</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+
+    <div class="filter-container">
+      <h3>Ubicación</h3>
+      <select id="location-select" (change)="filterByLocation($event)" class="form-control">
+        <option value="">Todos los lugares</option>
+        <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+      </select>
+    </div>
+
+    <div class="filter-container">
+      <h3>Filtros Adicionales</h3>
+      <label>
+        <input type="checkbox" formControlName="destacado">
+         Destacados
+      </label>
+      <label>
+        <input type="checkbox" formControlName="descuento">
+        Descuentos
+      </label>
+    </div>
+    
+  </form>
 </div>
 
 <!-- Botón para abrir el sidebar -->

@@ -42,6 +42,10 @@
       {{ evento.addedToCart ? 'Añadido' : 'Añadir al carrito' }}
     </button>
   </div>
+
+  <!-- Integrar el componente de reseñas -->
+  <app-reiews [eventId]="evento.id"></app-reiews>
+
   <app-recomendaciones [category]="evento.category"></app-recomendaciones>
 </div>
 <div *ngIf="!evento">

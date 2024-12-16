@@ -19,3 +19,78 @@ a {
     color: $color-accent;
   }
 }
+
+/* Contenedor de los botones y formularios */
+.buttons-container {
+  display: flex;
+  align-items: center; /* Alineación vertical centrada */
+  gap: 20px; /* Espaciado entre elementos */
+  padding: 20px;
+}
+
+/* Estilos para los botones */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  background-color: $color-primary;
+  color: $color-white;
+}
+
+.btn:hover {
+  background-color: darken($color-primary, 10%);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Estilos del formulario y filtros */
+.search-form, .filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Estilos para poner label e input en línea */
+.buscar-container, .categorias-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaciado entre label e input/select */
+}
+
+.form-control {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid $color-primary;
+  font-size: 15px;
+  background-color: $color-white;
+  color: $color-secondary;
+}
+ .buscadorl {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid $color-primary;
+  font-size: 15px;
+  background-color: $color-white;
+  color: $color-secondary;
+}
+/* Otros estilos */
+// .eventos {
+//   margin-top: 20px;
+// }
+
+.name {
+  color: $color-secondary;
+  text-decoration: none;
+}
+
+.name:hover {
+  text-decoration: underline;
+}

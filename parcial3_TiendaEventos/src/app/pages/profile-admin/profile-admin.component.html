@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil de Usuario</title>
+</head>
+<body>
+  <div *ngIf="profile" class="profile-container">
+    <h1>Perfil de Administrador</h1>
+    <div class="profile-details">
+      <p><strong>Nombre de Usuario:</strong> {{ profile.name }}</p>
+      <p><strong>Email:</strong> {{ profile.email }}</p>
+    </div>
+    <h2>Historial de Compras</h2>
+    <a routerLink="/historial-compras">Ver Historial de Compras</a>
+    <button [routerLink]="['/edit']" class="btn btn-secondary">Editar Perfil</button>
+    <button [routerLink]="['/admin']" class="btn btn-secondary">Administración</button>
+    <button (click)="logout()" class="btn btn-secondary">Cerrar Sesión</button>
+  </div>
+</body>
+</html>

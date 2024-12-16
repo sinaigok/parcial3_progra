@@ -13,7 +13,12 @@ import { ConfirmacionExitosaComponent } from './pages/confirmacion-exitosa/confi
 import { HistorialComprasComponent } from './pages/historial-compras/historial-compras.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { EventoEditableComponent } from './pages/evento-editable/evento-editable.component';
+import { ProfileAdminComponent } from './pages/profile-admin/profile-admin.component';
 import { NewEventComponent } from './pages/new-event/new-event.component';
+import { CrearReviewComponent } from './pages/crear-review/crear-review.component';
+import { ReiewsComponent } from './pages/reiews/reiews.component';
+// import { MakeGiftcardComponent } from './pages/make-giftcard/make-giftcard.component';
+// import { EditgiftComponent } from './pages/editgift/editgift.component';
 import { Component } from '@angular/core';
 
 export const routes: Routes = [
@@ -26,12 +31,17 @@ export const routes: Routes = [
   { path: "forgot", component: ForgotPasswordComponent },
   { path: 'evento/:id', component: EventoComponent },
   {path: 'evento_edit/:id', component: EventoEditableComponent},
+  // {path: 'gitfedit/:id',component:EditgiftComponent},
   { path: "reco", component: RecomendacionesComponent },
   { path: 'checkout', component: ConfirmacionCompraComponent },
   { path: 'confirmacion-exitosa', component: ConfirmacionExitosaComponent },
   { path: 'historial-compras', component: HistorialComprasComponent },
   {path: 'admin',component:AdminComponent},
   {path: 'new', component:NewEventComponent},
+  { path: 'make-review/:id', component: CrearReviewComponent },
+  { path: 'review/:id', component: ReiewsComponent},
+  {path: 'profile-admin', component:ProfileAdminComponent},
+  // {path: 'make-giftcard', component: MakeGiftcardComponent},
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/inicio' }
 ];

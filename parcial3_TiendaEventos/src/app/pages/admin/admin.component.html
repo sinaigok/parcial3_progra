@@ -1,8 +1,25 @@
+<div class="buttons-container">
+  <a routerLink="/new" class="btn">Crear Evento</a>
+  <!-- <a routerLink="/make-giftcard" class="btn">Crear Gift- Card</a> -->
 
-<a routerLink="/new" class="btn">Crear Evento</a>
-<div *ngFor="let evento of eventos" class="eventos">
-    <a [routerLink]="['/evento_edit', evento.id]" class="name">{{ evento.name }}</a>
+  <form [formGroup]="searchform" class="search-form">
+    <div class="buscar-container">
+      <label for="eventosearch" class="buscar-label">Buscar</label>
+      <input formControlName="eventosearch" type="text" id="eventosearch" class="buscadorl">
+    </div>
+  </form>
+
+  <div class="filter-container">
+    <div class="categorias-container">
+      <label for="category-select" class="categorias-label">Categorías</label>
+      <select id="category-select" (change)="filterByCategory($event)" class="form-control">
+        <option value="">Todas las categorías</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
   </div>
+</div>
 
-  
-  
+<div *ngFor="let evento of filteredEventos" class="eventos">
+  <a [routerLink]="['/evento_edit', evento.id]" class="name">{{ evento.name }}</a>
+</div>

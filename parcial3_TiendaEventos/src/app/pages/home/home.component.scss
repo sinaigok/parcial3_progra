@@ -76,6 +76,7 @@ body {
 .card-title {
   font-size: 1.25rem;
   margin-bottom: 8px;
+  margin-top:50px;
   color: $color-secondary;
 }
 
@@ -97,6 +98,8 @@ body {
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
   font-family: 'Poppins', sans-serif; // Aplicar la tipografía a los botones
+
+
 }
 
 .btn-primary {
@@ -126,7 +129,8 @@ body {
 
 /* Estilos del sidebar */
 .sidebar {
-  height: 100%;
+  height: 100vh;
+  opacity: 90%;
   width: 0;
   position: fixed;
   z-index: 100001; /* Asegurar que esté sobre el app.component.html */
@@ -135,7 +139,7 @@ body {
   background-color: $color-secondary;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding-top: 5px;
   width: 300px; /* Ajustar el ancho a 300px */
 }
 
@@ -160,20 +164,27 @@ body {
 }
 
 .filter-container {
-  padding: 10px;
+  padding: 7px;
   color: $color-white;
 }
 
-#category-select, #location-select {
-  padding: 8px;
+#category-select, #location-select, #eventosearch {
+  padding: 5px;
   border-radius: 4px;
   border: 1px solid $color-primary;
   font-size: 15px;
-  margin-right: 5px; /* Añadir margen derecho para separación */
   background-color: $color-white;
   color: $color-secondary;
+  width: 250px;
 }
-
+.buscar{
+  color: white;
+  margin-left: 15px;
+}
+#eventosearch.buscadorl{
+  margin-left: 12px;
+  width: 230px;
+}
 h2 {
   padding: 12px;
   color: $color-primary;

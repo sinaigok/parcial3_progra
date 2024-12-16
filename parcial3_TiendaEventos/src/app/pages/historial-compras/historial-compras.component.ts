@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatabaseService } from '../../services/database.service';
 import { AuthService } from '../../services/auth.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-historial-compras',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink,],
   templateUrl: './historial-compras.component.html',
   styleUrls: ['./historial-compras.component.scss']
 })

@@ -8,11 +8,12 @@ import { RecomendacionesComponent } from '../recomendaciones/recomendaciones.com
 import { CartService } from '../../services/cart.service';
 import { AuthService } from '../../services/auth.service';
 import { disablePersistentCacheIndexAutoCreation } from 'firebase/firestore';
+import { ReiewsComponent } from '../reiews/reiews.component';
 
 @Component({
   selector: 'app-evento',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, RecomendacionesComponent],
+  imports: [CommonModule, FormsModule, RouterModule, RecomendacionesComponent,ReiewsComponent],
   templateUrl: './evento.component.html',
   styleUrls: ['./evento.component.scss']
 })

@@ -80,4 +80,19 @@ export class DatabaseService {
     const q = query(comprasRef); 
     return collectionData(q, { idField: 'id' }); 
   }
+  getReviewById(reviewId: string): Observable<any> { 
+    const docRef = doc(this.firestore, `reviews/${reviewId}`); 
+    return docData(docRef, { idField: 'id' }); 
+  }
+  
+  addReview(review: any): Promise<any> {
+    const collectionRef = collection(this.firestore, 'reviews');
+    return addDoc(collectionRef, review);
+  }
+  addGiftcard(giftcard: any): Promise<any> {
+    const collectionRef = collection(this.firestore, 'giftcard');
+    return addDoc(collectionRef, giftcard);
+  }
+  
 }
+
