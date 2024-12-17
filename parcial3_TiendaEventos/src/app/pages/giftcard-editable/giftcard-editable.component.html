@@ -1,0 +1,30 @@
+
+<div class="giftcard-editable-container">
+    <h1>Editar Giftcard</h1>
+  
+    <form (ngSubmit)="saveGiftcard()">
+      <div>
+        <label for="codigo">Código:</label>
+        <input type="text" id="codigo" [(ngModel)]="giftcard.codigo" name="codigo" required>
+      </div>
+      
+      <div>
+        <label for="monto">Monto:</label>
+        <input type="number" id="monto" [(ngModel)]="giftcard.monto" name="monto" required>
+      </div>
+      
+      <div>
+        <label for="estado">Estado:</label>
+        <select id="estado" [(ngModel)]="giftcard.estado" name="estado">
+          <option [ngValue]="true">Activo</option>
+          <option [ngValue]="false">Inactivo</option>
+        </select>
+      </div>
+      
+      <button type="submit">Guardar Cambios</button>
+      <button type="button" (click)="resetChanges()">Cancelar Cambios</button>
+      <button class="eliminar" (click)="handleDelete()">Eliminar Gift-Card</button>
+  
+    </form>
+  </div>
+  

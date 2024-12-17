@@ -17,8 +17,9 @@ import { ProfileAdminComponent } from './pages/profile-admin/profile-admin.compo
 import { NewEventComponent } from './pages/new-event/new-event.component';
 import { CrearReviewComponent } from './pages/crear-review/crear-review.component';
 import { ReiewsComponent } from './pages/reiews/reiews.component';
-// import { MakeGiftcardComponent } from './pages/make-giftcard/make-giftcard.component';
-// import { EditgiftComponent } from './pages/editgift/editgift.component';
+import { GiftCardComponent } from './pages/gift-card/gift-card.component';
+import { GiftcardEditableComponent } from './pages/giftcard-editable/giftcard-editable.component';
+import { NewGiftcardComponent } from './pages/new-giftcard/new-giftcard.component';
 import { Component } from '@angular/core';
 
 export const routes: Routes = [
@@ -41,6 +42,9 @@ export const routes: Routes = [
   { path: 'make-review/:id', component: CrearReviewComponent },
   { path: 'review/:id', component: ReiewsComponent},
   {path: 'profile-admin', component:ProfileAdminComponent},
+  { path: 'gift-card', component: GiftCardComponent },
+  { path: 'new-giftcard', component: NewGiftcardComponent },
+  { path: 'giftcard-editable/:id', component: GiftcardEditableComponent },
   // {path: 'make-giftcard', component: MakeGiftcardComponent},
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/inicio' }

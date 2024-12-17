@@ -1,0 +1,88 @@
+@import '../../../styles.scss'; // Importa las variables de colores
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Contenedor de los botones */
+.buttons-container {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+
+  .btn {
+    background-color: $color-primary;
+    color: $color-white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($color-primary, 10%);
+    }
+  }
+}
+
+/* Contenedor de las giftcards */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  max-width: 1200px; /* Limita el ancho máximo del contenedor */
+  margin: 0 auto; /* Centra el contenedor en la página */
+}
+
+/* Estilos para las giftcards */
+.giftcard {
+  position: relative; /* Para asegurar que el texto se posicione correctamente */
+  border: 1px solid $color-primary;
+  text-align: left;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 16px;
+  padding: 16px;
+  background-color: $color-white;
+  transition: transform 0.2s ease-in-out;
+  width: 400px; /* Ajuste para hacer las tarjetas más cuadradas */
+  height: 250px; /* Ajuste para hacer las tarjetas más cuadradas */
+  box-sizing: border-box;
+
+  h3 {
+    margin-bottom: 8px;
+    color: $color-secondary;
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: $color-secondary;
+    margin-bottom: 12px;
+  }
+
+  .name {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: $color-accent;
+    color: $color-white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($color-accent, 10%);
+    }
+  }
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}

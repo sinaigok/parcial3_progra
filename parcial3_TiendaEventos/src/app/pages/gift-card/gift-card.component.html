@@ -1,0 +1,9 @@
+
+<div class="buttons-container">
+    <a routerLink="/new-giftcard" class="btn">Crear Gift-Card</a>
+</div>
+<div *ngFor="let giftcard of giftcards" class="giftcard">
+    <h3><strong>{{ giftcard.codigo }}</strong></h3>
+      <p>Monto: {{ giftcard.monto }}</p>
+    <a [routerLink]="['/giftcard-editable', giftcard.id]" class="name">Editar Gift-Card</a>
+  </div>
