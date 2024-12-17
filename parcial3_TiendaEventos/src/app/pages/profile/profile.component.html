@@ -16,6 +16,15 @@
     <a routerLink="/historial-compras">Ver Historial de Compras</a>
     <button [routerLink]="['/edit']" class="btn btn-secondary">Editar Perfil</button>
     <button (click)="logout()" class="btn btn-secondary">Cerrar Sesión</button>
+
+    <h2>Favoritos</h2>
+    <div *ngFor="let evento of favoritos" class="favorito-item">
+      <h3>{{ evento.name }}</h3>
+      <p>{{ evento.date | date:'medium' }}</p>
+      <p>{{ evento.location }}</p>
+      <button [routerLink]="['/evento', evento.id]">Ver Evento</button>
+      <button (click)="removeFromFavorites(evento)">Eliminar</button>
+    </div>
   </div>
 </body>
 </html>

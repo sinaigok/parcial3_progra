@@ -7,13 +7,12 @@ import { RouterModule } from '@angular/router';
 import { RecomendacionesComponent } from '../recomendaciones/recomendaciones.component';
 import { CartService } from '../../services/cart.service';
 import { AuthService } from '../../services/auth.service';
-import { disablePersistentCacheIndexAutoCreation } from 'firebase/firestore';
 import { ReiewsComponent } from '../reiews/reiews.component';
 
 @Component({
   selector: 'app-evento',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, RecomendacionesComponent,ReiewsComponent],
+  imports: [CommonModule, FormsModule, RouterModule, RecomendacionesComponent, ReiewsComponent],
   templateUrl: './evento.component.html',
   styleUrls: ['./evento.component.scss']
 })
@@ -22,6 +21,9 @@ export class EventoComponent implements OnInit {
   evento: any;
   cantidadEntradas: number = 0;
   botonActivo: boolean = false;
+  favoritos: any[] = [];
+  rating: number = 0; // Valoración actual
+  hoverRating: number = 0; // Valoración en hover
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +34,8 @@ export class EventoComponent implements OnInit {
 
   ngOnInit() {
     this.eventId = this.route.snapshot.paramMap.get('id');
+    this.favoritos = JSON.parse(localStorage.getItem('favoritos') || '[]');
+    this.rating = parseInt(localStorage.getItem(`rating-${this.eventId}`) || '0'); // Cargar la valoración del Local Storage
     if (this.eventId) {
       this.getEventDetail(this.eventId);
     }
@@ -46,6 +50,34 @@ export class EventoComponent implements OnInit {
         console.error('Error al obtener el detalle del evento', error);
       }
     );
+  }
+
+  rateEvent(star: number) {
+    this.rating = star;
+    localStorage.setItem(`rating-${this.eventId}`, star.toString()); // Guardar la valoración en el Local Storage
+    console.log(`Evento valorado con ${star} estrellas`);
+  }
+
+  hoverStars(star: number) {
+    this.hoverRating = star;
+  }
+
+  resetStars() {
+    this.hoverRating = 0;
+  }
+
+  toggleFavorite(evento: any) {
+    const index = this.favoritos.findIndex(fav => fav.id === evento.id);
+    if (index > -1) {
+      this.favoritos.splice(index, 1);
+    } else {
+      this.favoritos.push(evento);
+    }
+    localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
+  }
+
+  isFavorite(evento: any): boolean {
+    return this.favoritos.some(fav => fav.id === evento.id);
   }
 
   actualizarBoton() {

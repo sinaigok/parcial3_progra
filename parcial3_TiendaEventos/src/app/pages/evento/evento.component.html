@@ -23,6 +23,9 @@
     
     <p><strong>Entradas Disponibles:</strong> {{ evento.ticketsAvailable - cantidadEntradas }}</p>
 
+    <!-- Botón de Favoritos -->
+    <button (click)="toggleFavorite(evento)">{{ isFavorite(evento) ? 'Eliminar de Favoritos' : 'Añadir a Favoritos' }}</button>
+    
     <!-- Nuevo campo para la cantidad de entradas -->
     <div>
       <label for="cantidad">Cantidad de Entradas:</label>
@@ -41,6 +44,19 @@
       [disabled]="!botonActivo || evento.addedToCart">
       {{ evento.addedToCart ? 'Añadido' : 'Añadir al carrito' }}
     </button>
+
+    <!-- Sección de Valoraciones -->
+    <div class="rating-container" (mouseleave)="resetStars()">
+      <label>Valora este evento:</label>
+      <span class="star" 
+            *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" 
+            [ngClass]="{'filled': rating >= star || hoverRating >= star}"
+            (mouseenter)="hoverStars(star)"
+            (mouseleave)="resetStars()"
+            (click)="rateEvent(star)">
+        ★
+      </span>
+    </div>
   </div>
 
   <!-- Integrar el componente de reseñas -->

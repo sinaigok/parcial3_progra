@@ -32,6 +32,15 @@
       </div>
     </div>
 
+    <div class="descuento-estudiante">
+      <label for="studentEmail">Correo Universitario:</label>
+      <input type="email" id="studentEmail" [(ngModel)]="studentEmail" placeholder="ejemplo@universidad.edu">
+      <button (click)="applyStudentDiscount()">Aplicar Descuento de Estudiante</button>
+    </div>
+
+    <h3 *ngIf="discountApplied">Descuento de estudiante aplicado: {{ discountPercentage }}%</h3>
+    <h3 *ngIf="discountApplied">Total con descuento: {{ totalWithDiscount }} Bs</h3>
+
     <button (click)="confirmarCompra()" [disabled]="!comprobante">Confirmar Compra</button>
   </div>
 

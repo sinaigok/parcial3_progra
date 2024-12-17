@@ -17,6 +17,11 @@ export class ConfirmacionCompraComponent implements OnInit {
   totalCarrito: number = 0;
   metodoPago: string = 'tarjeta';
   comprobante: File | null = null;
+  studentEmail: string = '';
+  discountPercentage: number = 10; // Ejemplo de descuento del 10%
+  discountApplied: boolean = false;
+  totalWithDiscount: number = 0;
+  validDomains: string[] = ['.edu', '.edu.bo']; // Lista de dominios válidos
 
   constructor(
     private router: Router,
@@ -44,6 +49,7 @@ export class ConfirmacionCompraComponent implements OnInit {
       const precioTotal = isNaN(item.precioTotal) ? 0 : item.precioTotal;
       return total + precioTotal;
     }, 0);
+    this.totalWithDiscount = this.totalCarrito;
     console.log('Total a pagar calculado en confirmación:', this.totalCarrito);
   }
 
@@ -52,6 +58,20 @@ export class ConfirmacionCompraComponent implements OnInit {
       this.comprobante = event.target.files[0];
       console.log('Comprobante seleccionado:', this.comprobante);
     }
+  }
+
+  applyStudentDiscount() {
+    if (this.isUniversityEmail(this.studentEmail)) {
+      this.discountApplied = true;
+      this.totalWithDiscount = this.totalCarrito * (1 - this.discountPercentage / 100);
+      console.log(`Descuento aplicado. Nuevo total: ${this.totalWithDiscount} Bs`);
+    } else {
+      alert('Por favor, introduce un correo universitario válido.');
+    }
+  }
+
+  isUniversityEmail(email: string): boolean {
+    return this.validDomains.some(domain => email.endsWith(domain));
   }
 
   async confirmarCompra() {
@@ -72,7 +92,7 @@ export class ConfirmacionCompraComponent implements OnInit {
           precioTotal: item.precioTotal,
           descuento: item.descuento ?? { valorDescuento: 0 }  // Asegurarse de incluir el descuento
         })),
-        total: this.totalCarrito,
+        total: this.totalWithDiscount, // Usar el total con descuento si se aplicó
         metodoPago: this.metodoPago,
         fecha: new Date().toISOString(),
         comprobante: this.comprobante.name

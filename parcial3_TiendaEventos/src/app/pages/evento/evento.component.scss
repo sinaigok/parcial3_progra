@@ -110,3 +110,68 @@ body {
   font-size: 1.1rem;
   color: $color-secondary;
 }
+
+.favoritos { 
+  margin-top: 20px; 
+  .favorito-item { 
+    background-color: #f9f9f9; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    padding: 15px; 
+    margin-bottom: 10px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    h3 { font-size: 1.2rem; 
+      margin: 0; color: #007bff; 
+    } 
+    p { 
+      margin: 0 0 5px; 
+      color: #555; 
+    } 
+    button { 
+      background-color: #007bff; 
+      color: white; 
+      border: none; 
+      border-radius: 4px; 
+      padding: 5px 10px; 
+      cursor: pointer; 
+      transition: background-color 0.3s ease; 
+      &:hover { 
+        background-color: #0056b3; 
+      } 
+      & + button { 
+        margin-left: 10px; 
+        background-color: #dc3545; 
+        &:hover { 
+          background-color: #c82333; 
+        } 
+      } 
+    } 
+  } 
+}
+
+.rating-container {
+  margin-top: 20px;
+  label {
+    font-size: 1.2rem;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .star {
+    display: inline-block;
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &.filled,
+    &:hover,
+    &:hover ~ .star {
+      color: #ffc107; /* Color de la estrella cuando está marcada o en hover */
+    }
+  }
+}
+

@@ -13,6 +13,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   profile: any;
+  favoritos: any[] = []; // Añadido para favoritos
 
   constructor(
     public auth: AuthService,
@@ -25,7 +26,17 @@ export class ProfileComponent implements OnInit {
       this.router.navigateByUrl('/login'); // Redirige al login si no está logueado
     } else {
       this.profile = this.auth.profile;
+      this.loadFavoritos(); // Cargar favoritos al iniciar
     }
+  }
+
+  loadFavoritos() {
+    this.favoritos = JSON.parse(localStorage.getItem('favoritos') || '[]');
+  }
+
+  removeFromFavorites(evento: any) {
+    this.favoritos = this.favoritos.filter(fav => fav.id !== evento.id);
+    localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
   }
 
   logout() {
